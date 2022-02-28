@@ -4,17 +4,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
+import { CabeceraComponent } from './cabecera/cabecera.component';
+import { PersonaComponent } from './persona/persona.component';
+import { ExperienciaComponent } from './experiencia/experiencia.component';
+import { ProyectosComponent } from './proyectos/proyectos.component';
+import { FormacionComponent } from './formacion/formacion.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CabeceraComponent,
+    PersonaComponent,
+    ExperienciaComponent,
+    ProyectosComponent,
+    FormacionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSliderModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
