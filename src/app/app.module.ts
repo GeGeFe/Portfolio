@@ -11,6 +11,10 @@ import { ProyectosComponent } from './proyectos/proyectos.component';
 import { FormacionComponent } from './formacion/formacion.component';
 import { LoginComponent } from './login/login.component';
 
+import {MatGridListModule} from '@angular/material/grid-list';
+import { HomeComponent } from './home/home.component';
+import { NotfoundComponent } from './notfound/notfound.component'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +23,15 @@ import { LoginComponent } from './login/login.component';
     ExperienciaComponent,
     ProyectosComponent,
     FormacionComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
