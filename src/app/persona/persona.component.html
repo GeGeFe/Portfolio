@@ -20,7 +20,7 @@
         <div mat-card-avatar><img style="border-radius: 50%" height="60px" width="60px" src={{personaActual.Avatar}} />
         </div>
         <mat-card-title>{{personaActual.Nombre}}, {{personaActual.Apellido}}</mat-card-title>
-        <mat-card-subtitle>{{personaActual.Fecha_Nacimiento}}</mat-card-subtitle>
+        <mat-card-subtitle>{{personaActual.Fecha_Nacimiento|date:"dd/MM/yyyy"}}</mat-card-subtitle>
     </mat-card-header>
     <img height="500" width="500" mat-card-image src={{personaActual.Banner}} alt="Imagen descriptiva">
     <mat-card-content>

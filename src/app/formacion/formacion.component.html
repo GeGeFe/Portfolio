@@ -1,5 +1,5 @@
 <li *ngFor="let formacion of formacionActual">
     {{formacion.Logo}} - {{formacion.Titulo}} - {{formacion.Institucion}}<br>
-    {{formacion.Fecha_Inicio}} - {{formacion.Fecha_Final}}
+    {{formacion.Fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.Fecha_Final|date:"dd/MM/yyyy"}}
 </li>
 
