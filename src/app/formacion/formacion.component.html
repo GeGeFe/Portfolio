@@ -1,1 +1,5 @@
-<p>formacion works!</p>
+<li *ngFor="let formacion of formacionActual">
+    {{formacion.Logo}} - {{formacion.Titulo}} - {{formacion.Institucion}}<br>
+    {{formacion.Fecha_Inicio}} - {{formacion.Fecha_Final}}
+</li>
+

@@ -1,6 +1,35 @@
-<mat-grid-list cols="3" rowHeight="2:1">
-    <mat-grid-tile colspan="1" rowspan="2"><img src={{urlFoto}} /></mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1">{{acercaDe}}</mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="2">{{personaActual}}</mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1"><img src={{urlBanner}} /></mat-grid-tile>
+<!-- <mat-grid-list cols="3" rowHeight="2:1">
+    <mat-grid-tile colspan="1" rowspan="2">
+        <img src={{personaActual.Avatar}}/>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+        {{personaActual.Acerca_de}}
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="2">
+        {{personaActual.Nombre}} {{personaActual.Apellido}}
+        <br>
+        {{personaActual.Fecha_Nacimiento}}
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+        <img src={{personaActual.Banner}} />
+    </mat-grid-tile>
 </mat-grid-list>
+ -->
+<mat-card>
+    <mat-card-header>
+        <div mat-card-avatar><img style="border-radius: 50%" height="60px" width="60px" src={{personaActual.Avatar}} />
+        </div>
+        <mat-card-title>{{personaActual.Nombre}}, {{personaActual.Apellido}}</mat-card-title>
+        <mat-card-subtitle>{{personaActual.Fecha_Nacimiento}}</mat-card-subtitle>
+    </mat-card-header>
+    <img height="500" width="500" mat-card-image src={{personaActual.Banner}} alt="Imagen descriptiva">
+    <mat-card-content>
+        <p>
+            {{personaActual.Acerca_de}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+    </mat-card-actions>
+</mat-card>

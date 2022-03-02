@@ -11,9 +11,13 @@ import { ProyectosComponent } from './proyectos/proyectos.component';
 import { FormacionComponent } from './formacion/formacion.component';
 import { LoginComponent } from './login/login.component';
 
-import {MatGridListModule} from '@angular/material/grid-list';
+// Material imports
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+
 import { HomeComponent } from './home/home.component';
-import { NotfoundComponent } from './notfound/notfound.component'; 
+import { NotfoundComponent } from './notfound/notfound.component';
+import { BaseDeDatosService } from './base-de-datos.service';
 
 @NgModule({
   declarations: [
@@ -31,9 +35,10 @@ import { NotfoundComponent } from './notfound/notfound.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule
   ],
-  providers: [],
+  providers: [BaseDeDatosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

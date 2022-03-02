@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseDeDatosService } from '../base-de-datos.service';
+import { Persona } from '../interfaces';
 
 @Component({
   selector: 'app-persona',
@@ -6,12 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./persona.component.css']
 })
 export class PersonaComponent implements OnInit {
-  public personaActual:String="Gabriel Gioiosa Farina"; // Inicialmente se va a cargar el perfil mio. Luego habra que implementar funciones para poder cambiar este usuario.
-  public urlBanner:String="";
-  public urlFoto:String="";
-  public acercaDe:String="Esto es una descripción sintética del curriculum.";
+  public personaActual: Persona = {
+    idPersona: 0,
+    Nombre: "",
+    Apellido: "",
+    Fecha_Nacimiento: new Date("01/01/1901"),
+    Banner: "",
+    Avatar: "",
+    Acerca_de: ""
+  };
 
-  constructor() { }
+  constructor(bdService: BaseDeDatosService) {
+    this.personaActual = bdService.getPersona();
+  }
 
   ngOnInit(): void {
   }
