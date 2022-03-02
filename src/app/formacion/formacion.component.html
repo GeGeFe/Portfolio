@@ -1,5 +1,5 @@
-<li *ngFor="let formacion of formacionActual">
-    {{formacion.Logo}} - {{formacion.Titulo}} - {{formacion.Institucion}}<br>
+<mat-card *ngFor="let formacion of formacionActual">
+    <mat-card-title>{{formacion.Titulo}}</mat-card-title>
+    {{formacion.Logo}} - {{formacion.Institucion}}<br>
     {{formacion.Fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.Fecha_Final|date:"dd/MM/yyyy"}}
-</li>
-
+</mat-card>

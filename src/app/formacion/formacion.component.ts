@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BaseDeDatosService } from '../base-de-datos.service';
 import { Formacion } from '../interfaces';
 
@@ -8,6 +8,8 @@ import { Formacion } from '../interfaces';
   styleUrls: ['./formacion.component.css']
 })
 export class FormacionComponent implements OnInit {
+  @Input() idPersona:number=0;
+  
   public formacionActual: Formacion[]=      [{
     idFormacion: 0,
     Titulo: "",
@@ -19,9 +21,7 @@ export class FormacionComponent implements OnInit {
 ;
 
   constructor(bdService: BaseDeDatosService) {
-    // Falta ver como mierda pasar el id de la parsona actual.
-    // *** Habría que hacer que persona sea el componente padre de todos los otros.
-    this.formacionActual=bdService.getFormacion(0);
+      this.formacionActual=bdService.getFormacion(this.idPersona);
   }
 
   ngOnInit(): void {

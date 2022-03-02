@@ -17,8 +17,7 @@
  -->
 <mat-card>
     <mat-card-header>
-        <div mat-card-avatar><img style="border-radius: 50%" height="60px" width="60px" src={{personaActual.Avatar}} />
-        </div>
+        <img mat-card-avatar src={{personaActual.Avatar}} />
         <mat-card-title>{{personaActual.Nombre}}, {{personaActual.Apellido}}</mat-card-title>
         <mat-card-subtitle>{{personaActual.Fecha_Nacimiento|date:"dd/MM/yyyy"}}</mat-card-subtitle>
     </mat-card-header>
@@ -29,7 +28,10 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
+        <button mat-button>Un lindo botón</button>
+        <button mat-button>Otro lindo botón</button>
     </mat-card-actions>
 </mat-card>
+<app-experiencia [idPersona]="personaActual.idPersona"></app-experiencia>
+<app-proyectos [idPersona]="personaActual.idPersona"></app-proyectos>
+<app-formacion [idPersona]="personaActual.idPersona"></app-formacion>
