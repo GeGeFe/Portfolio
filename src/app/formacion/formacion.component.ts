@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BaseDeDatosService } from '../base-de-datos.service';
+import { BaseDeDatosService } from '../servicios/base-de-datos.service';
 import { Formacion } from '../interfaces';
 
 @Component({

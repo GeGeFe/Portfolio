@@ -10,17 +10,20 @@ import { PersonaComponent } from './persona/persona.component';
 import { ExperienciaComponent } from './experiencia/experiencia.component';
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { FormacionComponent } from './formacion/formacion.component';
-import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { BaseDeDatosService } from './base-de-datos.service';
+import { BaseDeDatosService } from './servicios/base-de-datos.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SesionComponent } from './sesion/sesion.component';
+
 
 // Material imports
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -30,9 +33,9 @@ import { MatInputModule} from '@angular/material/input';
     ExperienciaComponent,
     ProyectosComponent,
     FormacionComponent,
-    LoginComponent,
     HomeComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    SesionComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,9 @@ import { MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [BaseDeDatosService],
   bootstrap: [AppComponent]

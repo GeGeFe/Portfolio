@@ -1,0 +1,26 @@
+<div align="center">
+    <h1>Iniciar sesión</h1>
+    <form [formGroup]="formulario" (ngSubmit)="alEnviar($event)">
+        <mat-form-field appearance="fill">
+            <mat-label><b> Usuario </b> </mat-label>
+            <input matInput placeholder="un_mail@ejemplo.com.ar" formControlName="username">
+            <mat-error *ngIf="getUsuario()?.errors && getUsuario()?.touched">
+                <div *ngIf="getUsuario()?.hasError('minlength')"> El usuario debe tener al menos 8 caractéres. </div>
+                <div *ngIf="getUsuario()?.hasError('required')"> Debe ingresar un usuario. </div>
+                <div *ngIf="getUsuario()?.hasError('pattern')"> El usuario solo puede contener números o letras. </div>
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label><b> Ingrese su contraseña </b> </mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-error *ngIf="getUsuario()?.errors && getPassword()?.touched">
+                <div *ngIf="getPassword()?.hasError('minlength')"> El usuario debe tener al menos 8 caractéres. </div>
+                <div *ngIf="getPassword()?.hasError('required')"> Debe ingresar un usuario. </div>
+                <div *ngIf="getPassword()?.hasError('pattern')"> El usuario solo puede contener números o letras. </div>
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button type="submit" color="primary"> Iniciar sesión </button>
+    </form>
+</div>
