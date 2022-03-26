@@ -9,17 +9,9 @@ import { Formacion } from '../interfaces';
   styleUrls: ['./formacion.component.css']
 })
 export class FormacionComponent implements OnInit {
-  @Input() idPersona:number=0;
+  @Input() idPersona!:number;
   
-  public formacionActual: Formacion[]=      [{
-    idFormacion: 0,
-    Titulo: "",
-    Fecha_Inicio: new Date("01/01/1900"),
-    Fecha_Final: new Date("01/02/1900"),
-    Logo: "",
-    Institucion: ""
-  }]
-;
+  public formacionActual!: Formacion[];
 
   constructor(bdService: BaseDeDatosService, public autServicio: AutenticacionService) {
       this.formacionActual=bdService.getFormacion(this.idPersona);

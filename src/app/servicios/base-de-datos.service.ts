@@ -1,32 +1,27 @@
 import { Injectable } from '@angular/core';
-//import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
+
 //import { environment } from 'src/environments/environment';
 import { Persona } from '../interfaces';
 import { Formacion } from '../interfaces';
 import { Proyecto } from '../interfaces';
-import { Disciplina } from '../interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseDeDatosService {
-  //  baseUrl = environment.baseUrl;
+  url = "http://192.168.0.6:8080/";
 
-  //  constructor(private http: HttpClient) { }
 
-  constructor() { }
-
-  getPersona(): Persona {
-    return {
-      idPersona: 0,
-      Nombre: "Gabriel",
-      Apellido: "Gioiosa Farina",
-      Fecha_Nacimiento: new Date("09/17/1980"),
-      Banner: "./assets/img/nave.jpg",
-      Avatar: "./assets/img/Alpha a Logo (Trazado de partículas).jpg",
-      Acerca_de: "Este pibe es re laburador y se la pasa aprendiendo cosas nuevas. Contratelón que les va venir bárbaro."
-    };
+  constructor(private http: HttpClient) {
   }
+
+
+  getPersona(idpersona: number) {
+    return this.http.get(`${this.url}personas/traer/${idpersona}`);
+  }
+
   getFormacion(idPersona: number): Formacion[] {
     return [
       {
