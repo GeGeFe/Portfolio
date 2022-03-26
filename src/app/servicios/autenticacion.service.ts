@@ -13,14 +13,12 @@ export class AutenticacionService {
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('UsuarioActual') || '{}'));
-    console.log("El servicio de autenticación está corriendo. ¡¡¡Alcancenlón!!!");
   }
 
   public IniciarSesion(credenciales: any): Observable<any> {
-    //   return this.http.post(this.url+"?username="+ credenciales.username+"&password="+credenciales.password, credenciales).pipe(map(datos => {
-    //   return this.http.post(this.url, {"username":credenciales.username, "password":credenciales.password}).pipe(map(datos => {
     return this.http.post(this.url, credenciales).pipe(map(datos => {
-      sessionStorage.setItem('token', JSON.stringify(datos));
+      sessionStorage.setItem('token', JSON.parse(JSON.stringify(datos)).token);
+      sessionStorage.setItem('username', JSON.parse(JSON.stringify(datos)).username);
       return datos;
     }
     ))
@@ -31,11 +29,11 @@ export class AutenticacionService {
   }
 
   public logueado(): boolean {
-    return sessionStorage.getItem("token")!="";
+    return sessionStorage.getItem("token") != "";
   }
 
-  public logOut(): void{
-    this.tokenactual="";
+  public logOut(): void {
+    this.tokenactual = "";
     sessionStorage.setItem('token', "");
   }
 }

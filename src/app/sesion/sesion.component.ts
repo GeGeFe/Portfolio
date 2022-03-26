@@ -41,7 +41,6 @@ export class SesionComponent implements OnInit {
   alEnviar(evento: Event) {
     evento.preventDefault;
     this.ServicioAutenticacion.IniciarSesion(this.formulario.value).subscribe(datos => {
-      console.log("DATA " + JSON.stringify(datos));
       this.ruta.navigate(['/']);
     })
   }

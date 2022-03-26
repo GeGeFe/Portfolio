@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BaseDeDatosService } from '../servicios/base-de-datos.service';
+import { AutenticacionService } from '../servicios/autenticacion.service';
 import { Formacion } from '../interfaces';
 
 @Component({
@@ -20,7 +21,7 @@ export class FormacionComponent implements OnInit {
   }]
 ;
 
-  constructor(bdService: BaseDeDatosService) {
+  constructor(bdService: BaseDeDatosService, public autServicio: AutenticacionService) {
       this.formacionActual=bdService.getFormacion(this.idPersona);
   }
 

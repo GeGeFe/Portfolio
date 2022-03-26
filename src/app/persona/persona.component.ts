@@ -15,10 +15,6 @@ export class PersonaComponent implements OnInit {
     this.personaActual = bdService.getPersona();
   }
 
-  Logueado():boolean{
-    return this.autServicio.logueado();
-  }
-
   ngOnInit(): void {
   }
 
