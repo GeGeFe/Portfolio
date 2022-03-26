@@ -7,6 +7,7 @@ import { SesionComponent } from './sesion/sesion.component';
 const routes: Routes = [
   {path:'login', component: SesionComponent},
   {path:'sesion', component: SesionComponent},
+  {path:'logout', component: SesionComponent},
   {path:'',component: HomeComponent},
   {path:'**',component: NotfoundComponent}
 ];

@@ -10,7 +10,7 @@ import { AutenticacionService } from '../servicios/autenticacion.service';
 })
 export class SesionComponent implements OnInit {
   formulario: FormGroup;
-  constructor(private FormBuilder: FormBuilder, private ServicioAutenticacion:AutenticacionService, private ruta:Router) {
+  constructor(private FormBuilder: FormBuilder, public ServicioAutenticacion: AutenticacionService, private ruta: Router) {
     this.formulario = this.FormBuilder.group(
       {
         username: ['', [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z0-9]*')]],
@@ -25,19 +25,24 @@ export class SesionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.ServicioAutenticacion.logueado()){
+      this.ServicioAutenticacion.logOut();
+      this.ruta.navigate(['/']);
+    }
   }
+
   getUsuario() {
     return this.formulario.get("username")
   }
   getPassword() {
     return this.formulario.get("password")
   }
+
   alEnviar(evento: Event) {
     evento.preventDefault;
-    console.log(this.formulario.value);
     this.ServicioAutenticacion.IniciarSesion(this.formulario.value).subscribe(datos => {
-      console.log("DATA" + datos);
-      this.ruta.navigate(['/'])
+      console.log("DATA " + JSON.stringify(datos));
+      this.ruta.navigate(['/']);
     })
   }
 }

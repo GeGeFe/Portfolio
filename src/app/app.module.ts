@@ -16,7 +16,7 @@ import { BaseDeDatosService } from './servicios/base-de-datos.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SesionComponent } from './sesion/sesion.component';
-
+import { AutenticacionService } from './servicios/autenticacion.service';
 
 // Material imports
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -50,7 +50,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     HttpClientModule
   ],
-  providers: [BaseDeDatosService],
+  providers: [BaseDeDatosService, AutenticacionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

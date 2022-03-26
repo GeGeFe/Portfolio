@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseDeDatosService } from '../servicios/base-de-datos.service';
+import { AutenticacionService } from '../servicios/autenticacion.service';
 import { Persona } from '../interfaces';
 
 @Component({
@@ -8,18 +9,14 @@ import { Persona } from '../interfaces';
   styleUrls: ['./persona.component.css']
 })
 export class PersonaComponent implements OnInit {
-  public personaActual: Persona = {
-    idPersona: 0,
-    Nombre: "",
-    Apellido: "",
-    Fecha_Nacimiento: new Date("01/01/1901"),
-    Banner: "",
-    Avatar: "",
-    Acerca_de: ""
-  };
+  public personaActual!: Persona;
 
-  constructor(bdService: BaseDeDatosService) {
+  constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService) {
     this.personaActual = bdService.getPersona();
+  }
+
+  Logueado():boolean{
+    return this.autServicio.logueado();
   }
 
   ngOnInit(): void {
