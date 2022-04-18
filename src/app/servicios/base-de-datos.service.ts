@@ -11,8 +11,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BaseDeDatosService {
-  url = "http://192.168.0.6:8080/";
-
+  url = "http://192.168.0.7:8080/";
 
   constructor(private http: HttpClient) {
   }

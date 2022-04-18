@@ -7,7 +7,7 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 export class AutenticacionService {
-  url = "http://192.168.0.6:8080/sesionInicioIrrestricto";
+  url = "http://192.168.0.7:8080/sesionInicioIrrestricto";
   currentUserSubject: BehaviorSubject<any>;
   public tokenactual!: String;
 

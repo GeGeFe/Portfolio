@@ -16,6 +16,7 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit(): void {
     this.bdService.getPersona(1).subscribe(datos => {
+// ¿Por qué me obliga a hacer chanchadas como esta y no reconoce directamente datos.idperson, etc.?
       this.personaActual = {
         idPersona: JSON.parse(JSON.stringify(datos)).idpersona,
         Nombre: JSON.parse(JSON.stringify(datos)).nombre,
