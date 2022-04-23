@@ -9,16 +9,21 @@ import { Formacion } from '../interfaces';
   styleUrls: ['./formacion.component.css']
 })
 export class FormacionComponent implements OnInit {
-  @Input() idPersona!:number;
-  
+/*  @Input() idPersona!: number;
+
   public formacionActual!: Formacion[];
 
-  constructor(bdService: BaseDeDatosService, public autServicio: AutenticacionService) {
-      this.formacionActual=bdService.getFormacion(this.idPersona);
+  constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService) {
   }
 
   ngOnInit(): void {
+    this.formacionActual = this.bdService.getFormacion(this.idPersona);
+  }*/
+  @Input() formacionActual!: Formacion[];
 
+  constructor(public autServicio: AutenticacionService) {
   }
 
+  ngOnInit(): void {
+  }
 }

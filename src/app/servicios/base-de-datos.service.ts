@@ -12,34 +12,16 @@ import { Observable } from 'rxjs';
 })
 export class BaseDeDatosService {
   url = "http://192.168.0.7:8080/";
-
   constructor(private http: HttpClient) {
   }
 
 
-  getPersona(idpersona: number) {
-    return this.http.get(`${this.url}personas/traer/${idpersona}`);
+  getPersona(idPersona: number) {
+    return this.http.get(`${this.url}personas/traer/${idPersona}`);
   }
 
-  getFormacion(idPersona: number): Formacion[] {
-    return [
-      {
-        idFormacion: 0,
-        Titulo: "Educación primaria",
-        Fecha_Inicio: new Date("03/01/1987"),
-        Fecha_Final: new Date("12/31/1993"),
-        Logo: "",
-        Institucion: "Colegio San Pedro"
-      },
-      {
-        idFormacion: 1,
-        Titulo: "Educación secundaria",
-        Fecha_Inicio: new Date("03/01/1994"),
-        Fecha_Final: new Date("12/31/2000"),
-        Logo: "",
-        Institucion: "ENET N1"
-      }
-    ];
+  getDisciplinas(){
+    return this.http.get(`${this.url}disciplina/traer`);
   }
   getProyectos(idPersona: number): Proyecto[] {
     return [

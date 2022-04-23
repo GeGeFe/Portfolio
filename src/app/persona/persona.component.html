@@ -32,6 +32,14 @@
         <button mat-button> Eliminar </button>
     </mat-card-actions>
 </mat-card>
+<mat-form-field appearance="fill">
+    <mat-label>Disciplina</mat-label>
+    <mat-select>
+        <mat-option *ngFor="let disciplina of disciplinas">
+            {{disciplina.Nombre}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
 <app-experiencia [idPersona]="personaActual.idPersona"></app-experiencia>
 <app-proyectos [idPersona]="personaActual.idPersona"></app-proyectos>
-<app-formacion [idPersona]="personaActual.idPersona"></app-formacion>
+<app-formacion [formacionActual]="formacionActual"></app-formacion>

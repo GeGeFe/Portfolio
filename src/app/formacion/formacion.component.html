@@ -1,7 +1,7 @@
 <mat-card *ngFor="let formacion of formacionActual">
-    <mat-card-title>{{formacion.Titulo}}</mat-card-title>
-    {{formacion.Logo}} - {{formacion.Institucion}}<br>
-    {{formacion.Fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.Fecha_Final|date:"dd/MM/yyyy"}}
+    <mat-card-title>{{formacion.titulo}}</mat-card-title>
+    {{formacion.logo}} - {{formacion.institucion}}<br>
+    {{formacion.fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.fecha_Final|date:"dd/MM/yyyy"}}
     <mat-card-actions *ngIf="autServicio.logueado()">
         <button mat-button> Editar </button>
         <button mat-button> Eliminar </button>

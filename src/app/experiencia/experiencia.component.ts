@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./experiencia.component.css']
 })
 export class ExperienciaComponent implements OnInit {
-  @Input() idPersona: number = 0;
+  @Input() idPersona!: number;
 
   constructor() { }
 
