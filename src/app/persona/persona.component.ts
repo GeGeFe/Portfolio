@@ -13,10 +13,13 @@ export class PersonaComponent implements OnInit {
   public formacionActual: Formacion[] = [];
   public disciplinas: Disciplina[] = [];
   public disciplinaActual!: number;
+  public cargando: boolean=false;
+
   constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService) {
   }
 
   ngOnInit(): void {
+    this.cargando=true;
     this.bdService.getPersona(1).subscribe((datos: any) => {
       // ¿Por qué me obliga a hacer chanchadas como esta y no reconoce directamente datos.idperson, etc.?
       this.personaActual = {
@@ -33,6 +36,7 @@ export class PersonaComponent implements OnInit {
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))
     });
+    this.cargando=false;
   }
 }
 

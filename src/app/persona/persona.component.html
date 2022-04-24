@@ -1,4 +1,5 @@
-<mat-card id="card-persona">
+<mat-progress-spinner *ngIf="cargando" mode="indeterminate"></mat-progress-spinner>
+<mat-card *ngIf="!cargando" id="card-persona">
     <mat-card-header>
         <img mat-card-avatar src={{personaActual.Avatar}} />
         <mat-card-title class="mat-elevation-z8">{{personaActual.Nombre}}, {{personaActual.Apellido}}</mat-card-title>
