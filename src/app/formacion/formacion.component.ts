@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BaseDeDatosService } from '../servicios/base-de-datos.service';
 import { AutenticacionService } from '../servicios/autenticacion.service';
 import { Formacion } from '../interfaces';
 
@@ -9,7 +8,7 @@ import { Formacion } from '../interfaces';
   styleUrls: ['./formacion.component.css']
 })
 export class FormacionComponent implements OnInit {
-  @Input() disciplinaActual: number=1;
+  @Input() disciplinaActual!: number;
   /*
     public formacionActual!: Formacion[];
   
@@ -25,5 +24,6 @@ export class FormacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Disciplina actual: "+this.disciplinaActual);
   }
 }

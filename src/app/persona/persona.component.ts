@@ -12,7 +12,7 @@ export class PersonaComponent implements OnInit {
   public personaActual!: Persona;
   public formacionActual: Formacion[] = [];
   public disciplinas: Disciplina[] = [];
-  disciplinaActual: number=1;
+  public disciplinaActual!: number;
   constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService) {
   }
 
@@ -32,7 +32,7 @@ export class PersonaComponent implements OnInit {
     });
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))
-      console.log(this.disciplinas);
     });
   }
 }
+

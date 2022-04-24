@@ -1,3 +1,8 @@
 mat-grid-tile {
-    background: lightblue;
-  }
+    background: rgb(123, 175, 192);
+ }
+
+img {
+   padding: 16px;
+   margin: 16px;
+}
