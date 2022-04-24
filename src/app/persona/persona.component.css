@@ -1,8 +1,5 @@
-mat-grid-tile {
-    background: rgb(123, 175, 192);
- }
-
-img {
-   padding: 16px;
-   margin: 16px;
+#card-persona {
+    background: rgb(192, 137, 123);
+    padding: 10px;
+    margin: 10px;
 }

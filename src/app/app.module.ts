@@ -7,9 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CabeceraComponent } from './cabecera/cabecera.component';
 import { PersonaComponent } from './persona/persona.component';
-import { ExperienciaComponent } from './experiencia/experiencia.component';
-import { ProyectosComponent } from './proyectos/proyectos.component';
-import { FormacionComponent } from './formacion/formacion.component';
+import { ExperienciaComponent } from './persona/experiencia/experiencia.component';
+import { ProyectosComponent } from './persona/proyectos/proyectos.component';
+import { FormacionComponent } from './persona/formacion/formacion.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { BaseDeDatosService } from './servicios/base-de-datos.service';

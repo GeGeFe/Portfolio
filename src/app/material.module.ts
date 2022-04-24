@@ -21,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     imports: [
@@ -29,7 +31,9 @@ import { NgModule } from '@angular/core';
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
-        MatSelectModule
+        MatSelectModule,
+        BrowserAnimationsModule,
+        MatProgressSpinnerModule
     ],
     exports: [
         MatGridListModule,
@@ -37,7 +41,9 @@ import { NgModule } from '@angular/core';
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
-        MatSelectModule
+        MatSelectModule,
+        BrowserAnimationsModule,
+        MatProgressSpinnerModule
     ]
 })
 export class MaterialModule { };

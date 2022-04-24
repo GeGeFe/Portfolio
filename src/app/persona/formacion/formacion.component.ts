@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AutenticacionService } from '../servicios/autenticacion.service';
-import { Formacion } from '../interfaces';
+import { AutenticacionService } from '../../servicios/autenticacion.service';
+import { Formacion } from '../../interfaces';
 
 @Component({
   selector: 'app-formacion',
