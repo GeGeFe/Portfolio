@@ -34,12 +34,13 @@
 </mat-card>
 <mat-form-field appearance="fill">
     <mat-label>Disciplina</mat-label>
-    <mat-select>
-        <mat-option *ngFor="let disciplina of disciplinas">
-            {{disciplina.Nombre}}
+    <mat-select [(value)]="disciplinaActual">
+        <mat-option *ngFor="let disciplina of disciplinas" [value]="disciplina.id_disciplina">
+            {{disciplina.nombre}}
         </mat-option>
     </mat-select>
 </mat-form-field>
+{{disciplinaActual}}
 <app-experiencia [idPersona]="personaActual.idPersona"></app-experiencia>
 <app-proyectos [idPersona]="personaActual.idPersona"></app-proyectos>
 <app-formacion [formacionActual]="formacionActual"></app-formacion>

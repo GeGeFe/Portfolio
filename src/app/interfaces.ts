@@ -16,29 +16,30 @@ export interface Formacion {
     fecha_Final: Date;
     logo: string;   // Enlace a la imagen del logo.
     institucion: string
+    disciplina: Disciplina // Si pongo Disciplina no funciona
 }
 
 export interface Disciplina {
-    idDisciplina: number;
-    Nombre: string
+    id_disciplina: number;
+    nombre: string
 }
 
 export interface Proyecto {
     idProyecto: number;
-    Nombre: string;
-    Fecha: Date;
-    Descripcion: string;
-    Enlace: string;
-    Disciplina: Disciplina
+    nombre: string;
+    fecha: Date;
+    descripcion: string;
+    enlace: string;
+    disciplina: Disciplina
 }
 
 export interface Experiencia {
     idExperiencia: number;
-    Puesto: string;
-    Fecha_Inicio: Date;
-    Fecha_Final: Date;
-    Logo_Empresa: string;
-    Descrip_tareas: string;
-    Nombre_Empresa: string;
-    Disciplina: Disciplina
+    puesto: string;
+    fecha_Inicio: Date;
+    fecha_Final: Date;
+    logo_Empresa: string;
+    descrip_tareas: string;
+    nombre_Empresa: string;
+    disciplina: Disciplina
 }

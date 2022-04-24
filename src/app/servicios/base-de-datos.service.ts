@@ -20,26 +20,26 @@ export class BaseDeDatosService {
     return this.http.get(`${this.url}personas/traer/${idPersona}`);
   }
 
-  getDisciplinas(){
+  getDisciplinas() {
     return this.http.get(`${this.url}disciplina/traer`);
   }
   getProyectos(idPersona: number): Proyecto[] {
     return [
       {
         idProyecto: 0,
-        Nombre: "Este mismo proyecto",
-        Fecha: new Date("02/01/2022"),
-        Descripcion: "string;",
-        Enlace: "string;",
-        Disciplina: { idDisciplina: 0, Nombre: "Programación" } // *** Aquí solo debería ir el id de la disciplina.
+        nombre: "Este mismo proyecto",
+        fecha: new Date("02/01/2022"),
+        descripcion: "string;",
+        enlace: "string;",
+        disciplina: { id_disciplina: 0, nombre: "Programación" } // *** Aquí solo debería ir el id de la disciplina.
       },
       {
         idProyecto: 1,
-        Nombre: "Un proyecyo inventado",
-        Fecha: new Date("03/01/2022"),
-        Descripcion: "Piripi pipipi",
-        Enlace: "Por ahí en interné. Busquelón",
-        Disciplina: { idDisciplina: 1, Nombre: "Teatro" } // *** Aquí solo debería ir el id de la disciplina.
+        nombre: "Un proyecyo inventado",
+        fecha: new Date("03/01/2022"),
+        descripcion: "Piripi pipipi",
+        enlace: "Por ahí en interné. Busquelón",
+        disciplina: { id_disciplina: 1, nombre: "Teatro" } // *** Aquí solo debería ir el id de la disciplina.
       }
     ];
   }
