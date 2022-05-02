@@ -9,21 +9,28 @@ import { Formacion } from '../../interfaces';
 })
 export class FormacionComponent implements OnInit {
   @Input() disciplinaActual!: number;
-  /*
-    public formacionActual!: Formacion[];
-  
-    constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService) {
-    }
-  
-    ngOnInit(): void {
-      this.formacionActual = this.bdService.getFormacion(this.idPersona);
-    }*/
   @Input() formacionActual!: Formacion[];
+  formacionMostrar!: Formacion[];
+  editando: boolean = false;
+  agregando: boolean = false;
 
   constructor(public autServicio: AutenticacionService) {
   }
 
   ngOnInit(): void {
-    console.log("Disciplina actual: "+this.disciplinaActual);
+  }
+
+  ngOnChanges(): void {
+    this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual); });
+  }
+
+  btnAgregar(evento: Event): void {
+    this.agregando = true;
+  }
+  btnDescartar(evento: Event): void {
+    this.agregando = false;
+  }
+  btnEnviar(evento: Event): void{
+    
   }
 }

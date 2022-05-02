@@ -1,11 +1,22 @@
-<mat-card *ngFor="let formacion of formacionActual">
+<mat-card *ngFor="let formacion of formacionMostrar">
     <mat-card-title class="mat-elevation-z18">{{formacion.titulo}}</mat-card-title>
     {{formacion.logo}} - {{formacion.institucion}}<br>
     {{formacion.fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.fecha_Final|date:"dd/MM/yyyy"}}<br>
-    {{formacion.disciplina}}
+
     <mat-card-actions *ngIf="autServicio.logueado()">
         <button mat-button> Editar </button>
         <button mat-button> Eliminar </button>
     </mat-card-actions>
 </mat-card>
-<button mat-button *ngIf="autServicio.logueado()"> Agregar </button>
+<button mat-button *ngIf="autServicio.logueado()&&!agregando" (click)="btnAgregar($event)"> Agregar </button>
+
+<mat-card *ngIf="agregando">
+    <mat-card-title class="mat-elevation-z18"> <input name="titulo"> </mat-card-title>
+<!--    {{formacion.logo}} - {{formacion.institucion}}<br>
+    {{formacion.fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.fecha_Final|date:"dd/MM/yyyy"}}<br>
+-->
+    <mat-card-actions>
+        <button mat-button (click)="btnDescartar($event)"> Descartar </button>
+        <button mat-button> Agregar </button>
+    </mat-card-actions>
+</mat-card>
