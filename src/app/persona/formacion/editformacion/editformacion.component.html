@@ -1,1 +1,42 @@
-<p>editformacion works!</p>
+<form class="mat-elevation-z18" [formGroup]="unaformacion">
+    <mat-form-field appearance="fill">
+        <mat-label><b> Titulo </b> </mat-label>
+        <input matInput placeholder="Titulo de la formacion" formControlName="titulo">
+        <!--        <mat-error *ngIf="getUsuario()?.errors && getUsuario()?.touched">
+            <div *ngIf="getUsuario()?.hasError('minlength')"> El usuario debe tener al menos 8 caractéres. </div>
+            <div *ngIf="getUsuario()?.hasError('required')"> Debe ingresar un usuario. </div>
+            <div *ngIf="getUsuario()?.hasError('pattern')"> El usuario solo puede contener números o letras. </div>
+        </mat-error>
+    -->
+    </mat-form-field>
+    <br><br>
+    <mat-form-field appearance="fill">
+        <mat-label><b> Fecha de inicio </b> </mat-label>
+        <input matInput [matDatepicker]="picker1" placeholder="Fecha de inicio" formControlName="fecha_inicio">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label><b> Fecha de finalización </b> </mat-label>
+        <input matInput [matDatepicker]="picker2" placeholder="Fecha de finalización" formControlName="fecha_final">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <br><br>
+    <mat-form-field appearance="fill">
+        <mat-label> <b> Logo de la institución </b></mat-label>
+        <input matInput placeholder="https://" formControlName="logo">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label><b> institución </b> </mat-label>
+        <input matInput placeholder="El nombre de la institución" formControlName="institucion">
+    </mat-form-field>
+    <!--    <button [disabled]="getUsuario()?.errors || getPassword()?.errors" mat-raised-button type="submit" color="primary"> Iniciar sesión </button>
+-->
+</form>
+
+
+
+<!--    {{formacion.logo}} - {{formacion.institucion}}<br>
+    {{formacion.fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.fecha_Final|date:"dd/MM/yyyy"}}<br>
+-->

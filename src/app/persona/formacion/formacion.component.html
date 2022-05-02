@@ -11,10 +11,7 @@
 <button mat-button *ngIf="autServicio.logueado()&&!agregando" (click)="btnAgregar($event)"> Agregar </button>
 
 <mat-card *ngIf="agregando">
-    <mat-card-title class="mat-elevation-z18"> <input name="titulo"> </mat-card-title>
-<!--    {{formacion.logo}} - {{formacion.institucion}}<br>
-    {{formacion.fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.fecha_Final|date:"dd/MM/yyyy"}}<br>
--->
+    <app-editformacion></app-editformacion>
     <mat-card-actions>
         <button mat-button (click)="btnDescartar($event)"> Descartar </button>
         <button mat-button> Agregar </button>
