@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 //import { environment } from 'src/environments/environment';
 import { Persona } from '../interfaces';
-import { Formacion } from '../interfaces';
+import { iFormacion } from '../interfaces';
 import { Proyecto } from '../interfaces';
 import { Observable } from 'rxjs';
 
@@ -23,6 +23,10 @@ export class BaseDeDatosService {
   getDisciplinas() {
     return this.http.get(`${this.url}disciplina/traer`);
   }
+  setFormacion(formacion: iFormacion): Observable<any> {
+    return this.http.post(`${this.url}formacion/crear`, JSON.stringify(formacion));
+  }
+
   getProyectos(idPersona: number): Proyecto[] {
     return [
       {

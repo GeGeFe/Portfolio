@@ -1,4 +1,12 @@
-<form class="mat-elevation-z18" [formGroup]="unaformacion">
+<form class="mat-elevation-z18" [formGroup]="unaformacion" (ngSubmit)="guardarFormacion($event)">
+    <mat-form-field appearance="fill">
+        <mat-label><b> Tipo </b> </mat-label>
+        <mat-select matNativeControl placeholder="Seleccione un tipo" formControlName="tipo">
+            <mat-option *ngFor="let untipo of tipoformacion | keyvalue" value="{{untipo.value}}">
+                {{untipo.value}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field><br><br>  
     <mat-form-field appearance="fill">
         <mat-label><b> Titulo </b> </mat-label>
         <input matInput placeholder="Titulo de la formacion" formControlName="titulo">
@@ -15,7 +23,7 @@
         <input matInput [matDatepicker]="picker1" placeholder="Fecha de inicio" formControlName="fecha_inicio">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field><br>
     <mat-form-field appearance="fill">
         <mat-label><b> Fecha de finalización </b> </mat-label>
         <input matInput [matDatepicker]="picker2" placeholder="Fecha de finalización" formControlName="fecha_final">
@@ -26,13 +34,12 @@
     <mat-form-field appearance="fill">
         <mat-label> <b> Logo de la institución </b></mat-label>
         <input matInput placeholder="https://" formControlName="logo">
-    </mat-form-field>
+    </mat-form-field><br>
     <mat-form-field appearance="fill">
         <mat-label><b> institución </b> </mat-label>
         <input matInput placeholder="El nombre de la institución" formControlName="institucion">
     </mat-form-field>
-    <!--    <button [disabled]="getUsuario()?.errors || getPassword()?.errors" mat-raised-button type="submit" color="primary"> Iniciar sesión </button>
--->
+    <button type="submit" color="primary"> Guardar </button>
 </form>
 
 

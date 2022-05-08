@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { BaseDeDatosService } from '../servicios/base-de-datos.service';
 import { AutenticacionService } from '../servicios/autenticacion.service';
-import { Disciplina, Formacion, Persona } from '../interfaces';
+import { Disciplina, iFormacion, Persona } from '../interfaces';
 
 @Component({
   selector: 'app-persona',
@@ -10,9 +10,9 @@ import { Disciplina, Formacion, Persona } from '../interfaces';
 })
 export class PersonaComponent implements OnInit {
   public personaActual!: Persona;
-  public formacionActual: Formacion[] = [];
+  public formacionActual: iFormacion[] = [];
   public disciplinas: Disciplina[] = [];
-  public disciplinaActual!: number;
+  public disciplinaActual!: Disciplina;
   public cargando: boolean=false;
 
   constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService) {

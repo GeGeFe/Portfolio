@@ -1,3 +1,5 @@
+import { TiposFormacion } from "./persona/formacion/tiposformacion";
+
 export interface Persona {
     idPersona: number;
     Nombre: string;
@@ -8,15 +10,15 @@ export interface Persona {
     Acerca_de: string;
 }
 
-export interface Formacion {
-    idFormacion: number;
-    //  Tipo: Ver que equivalente se puede usar para el tipo set de la base de datos. 
+export interface iFormacion {
+    id_educacion: number;
+    tipo: TiposFormacion 
     titulo: string;
     fecha_Inicio: Date;
     fecha_Final: Date;
     logo: string;   // Enlace a la imagen del logo.
     institucion: string
-    disciplina: Disciplina // Si pongo Disciplina no funciona
+    disciplina: Disciplina
 }
 
 export interface Disciplina {

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AutenticacionService } from '../../servicios/autenticacion.service';
-import { Formacion } from '../../interfaces';
+import { Disciplina, iFormacion } from '../../interfaces';
+import { BaseDeDatosService } from 'src/app/servicios/base-de-datos.service';
 
 @Component({
   selector: 'app-formacion',
@@ -8,9 +9,9 @@ import { Formacion } from '../../interfaces';
   styleUrls: ['./formacion.component.css']
 })
 export class FormacionComponent implements OnInit {
-  @Input() disciplinaActual!: number;
-  @Input() formacionActual!: Formacion[];
-  formacionMostrar!: Formacion[];
+  @Input() disciplinaActual!: Disciplina;
+  @Input() formacionActual!: iFormacion[];
+  formacionMostrar!: iFormacion[];
   editando: boolean = false;
   agregando: boolean = false;
 
@@ -21,7 +22,7 @@ export class FormacionComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-    this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual); });
+    this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); });
   }
 
   btnAgregar(evento: Event): void {
@@ -30,7 +31,9 @@ export class FormacionComponent implements OnInit {
   btnDescartar(evento: Event): void {
     this.agregando = false;
   }
-  btnEnviar(evento: Event): void{
-    
+  recibirformacion(formacion:iFormacion): void {
+    this.formacionActual.push(formacion);
+    this.agregando = false;
+    this.ngOnInit();
   }
 }

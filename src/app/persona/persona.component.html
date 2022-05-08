@@ -19,7 +19,7 @@
 <mat-form-field appearance="fill">
     <mat-label>Disciplina</mat-label>
     <mat-select [(value)]="disciplinaActual">
-        <mat-option *ngFor="let disciplina of disciplinas" [value]="disciplina.id_disciplina">
+        <mat-option *ngFor="let disciplina of disciplinas" [value]="disciplina">
             {{disciplina.nombre}}
         </mat-option>
     </mat-select>
