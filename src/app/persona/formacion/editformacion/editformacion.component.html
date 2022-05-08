@@ -6,7 +6,7 @@
                 {{untipo.value}}
             </mat-option>
         </mat-select>
-    </mat-form-field><br><br>  
+    </mat-form-field><br><br>
     <mat-form-field appearance="fill">
         <mat-label><b> Titulo </b> </mat-label>
         <input matInput placeholder="Titulo de la formacion" formControlName="titulo">
@@ -39,7 +39,14 @@
         <mat-label><b> institución </b> </mat-label>
         <input matInput placeholder="El nombre de la institución" formControlName="institucion">
     </mat-form-field>
-    <button type="submit" color="primary"> Guardar </button>
+    <button [disabled]="
+        getTipo()?.errors ||
+        getFFinal()?.errors ||
+        getFInicio()?.errors ||
+        getLogo()?.errors ||
+        getTitulo()?.errors ||
+        getInstitucion()?.errors"
+        type="submit" color="primary"> Guardar </button>
 </form>
 
 

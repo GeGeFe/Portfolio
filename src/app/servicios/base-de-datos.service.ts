@@ -15,7 +15,6 @@ export class BaseDeDatosService {
   constructor(private http: HttpClient) {
   }
 
-
   getPersona(idPersona: number) {
     return this.http.get(`${this.url}personas/traer/${idPersona}`);
   }

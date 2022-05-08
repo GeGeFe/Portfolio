@@ -22,13 +22,32 @@ export class EditformacionComponent implements OnInit {
     this.unaformacion = this.FormBuilder.group(
       {
         tipo: [TiposFormacion.Curso_Capacitación, [Validators.required]],
-        titulo: ['', [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z0-9]*')]],
+        titulo: ['', [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\\s]*')]],
         fecha_inicio: ['', [Validators.required]],
         fecha_final: ['', [Validators.required]],
         logo: ['', [Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
-        institucion: ['', [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z0-9]*')]]
+        institucion: ['', [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\\s]*')]]
       }
     )
+  }
+
+  getTitulo(){
+    return this.unaformacion.get("titulo");
+  }
+  getTipo(){
+    return this.unaformacion.get("tipo");
+  }
+  getFInicio(){
+    return this.unaformacion.get("fecha_inicio");
+  }
+  getFFinal(){
+    return this.unaformacion.get("fecha_final");
+  }
+  getLogo(){
+    return this.unaformacion.get("logo");
+  }
+  getInstitucion(){
+    return this.unaformacion.get("institucion");
   }
 
   guardarFormacion(evento: Event) {
