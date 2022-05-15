@@ -1,3 +1,4 @@
+import { DATE_PIPE_DEFAULT_TIMEZONE } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Disciplina, iFormacion } from 'src/app/interfaces';
@@ -61,7 +62,7 @@ export class EditformacionComponent implements OnInit {
       this.unaformacion.value.institucion,
       this.disciplinaActual)
 
-    this.bdService.setFormacion(this.formacion);
+    this.bdService.setFormacion(this.formacion).subscribe();
     this.nuevaformacion.emit(this.formacion);
   }
   ngOnInit(): void {

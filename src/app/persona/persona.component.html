@@ -1,29 +1,36 @@
-<mat-progress-spinner *ngIf="cargando" mode="indeterminate"></mat-progress-spinner>
-<mat-card *ngIf="!cargando" id="card-persona">
-    <mat-card-header>
-        <img mat-card-avatar src={{personaActual.Avatar}} />
-        <mat-card-title class="mat-elevation-z8">{{personaActual.Nombre}}, {{personaActual.Apellido}}</mat-card-title>
-        <mat-card-subtitle>{{personaActual.Fecha_Nacimiento|date:"dd/MM/yyyy"}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image class="banner" src={{personaActual.Banner}} alt="Imagen descriptiva">
-    <mat-card-content>
-        <p>
-            {{personaActual.Acerca_de}}
-        </p>
-    </mat-card-content>
-    <mat-card-actions *ngIf="autServicio.logueado()">
-        <button mat-button> Editar </button>
-        <button mat-button> Eliminar </button>
-    </mat-card-actions>
-</mat-card>
-<mat-form-field appearance="fill">
-    <mat-label>Disciplina</mat-label>
-    <mat-select [(value)]="disciplinaActual">
-        <mat-option *ngFor="let disciplina of disciplinas" [value]="disciplina">
-            {{disciplina.nombre}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
-<app-experiencia [idPersona]="personaActual.idPersona"></app-experiencia>
-<app-proyectos [idPersona]="personaActual.idPersona"></app-proyectos>
-<app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplinaActual"></app-formacion>
+<div Align="center">
+    <mat-progress-spinner *ngIf="personaActual==undefined" mode="indeterminate"></mat-progress-spinner>
+</div>
+<div *ngIf="personaActual!=undefined">
+    <mat-card id="card-persona">
+        <mat-card-header>
+            <img mat-card-avatar src={{personaActual.Avatar}} />
+            <mat-card-title class="mat-elevation-z8">{{personaActual.Nombre}}, {{personaActual.Apellido}}
+            </mat-card-title>
+            <mat-card-subtitle>{{personaActual.Fecha_Nacimiento|date:"dd/MM/yyyy"}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image class="banner" src={{personaActual.Banner}} alt="Imagen descriptiva">
+        <mat-card-content>
+            <p>
+                {{personaActual.Acerca_de}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions *ngIf="autServicio.logueado()">
+            <button mat-button> Editar </button>
+            <button mat-button> Eliminar </button>
+        </mat-card-actions>
+    </mat-card>
+    <mat-form-field appearance="fill">
+        <mat-label>Disciplina</mat-label>
+        <mat-select [(value)]="disciplinaActual">
+            <mat-option *ngFor="let disciplina of disciplinas" [value]="disciplina">
+                {{disciplina.nombre}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div *ngIf="disciplinaActual!=undefined">
+        <app-experiencia [idPersona]="personaActual.idPersona"></app-experiencia>
+        <app-proyectos [idPersona]="personaActual.idPersona"></app-proyectos>
+        <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplinaActual"></app-formacion>
+    </div>
+</div>

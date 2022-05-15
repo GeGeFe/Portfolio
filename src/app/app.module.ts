@@ -17,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SesionComponent } from './sesion/sesion.component';
 import { AutenticacionService } from './servicios/autenticacion.service';
-import { interceptorProvider } from './sesion/interceptor.service';
+import { interceptorProvider } from './servicios/interceptor.service';
 import { MaterialModule } from './material.module';
 import { EditformacionComponent } from './persona/formacion/editformacion/editformacion.component';
 
