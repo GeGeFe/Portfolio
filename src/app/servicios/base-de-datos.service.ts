@@ -23,6 +23,10 @@ export class BaseDeDatosService {
     return this.http.get(`${this.url}disciplina/traer`);
   }
 
+  delFormacion(formacion: iFormacion) {
+    return this.http.delete(`${this.url}formacion/borrar/`+formacion.id_educacion);
+  }
+
   setFormacion(formacion: iFormacion): Observable<any> {
     let headers = new HttpHeaders({
       'Access-Control-Allow-Headers': 'Content-Type',
@@ -32,8 +36,6 @@ export class BaseDeDatosService {
     });
     let options = { 'headers': headers };
 
-    //    return this.http.post(`${this.url}formacion/crear`, JSON.stringify(formacion), options).pipe(map(datos => {
-    //    return this.http.post(`${this.url}formacion/crear`, {
     return this.http.post(`${this.url}personas/1/agregarFormacion`, { // Cambiar luego el 1 por personaActual
       id_educacion: formacion.id_educacion,
       tipo: formacion.tipo,

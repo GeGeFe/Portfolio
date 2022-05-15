@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AutenticacionService } from '../../servicios/autenticacion.service';
 import { Disciplina, iFormacion } from '../../interfaces';
 import { BaseDeDatosService } from 'src/app/servicios/base-de-datos.service';
+import { Formacion } from './formacion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formacion',
@@ -12,13 +14,19 @@ export class FormacionComponent implements OnInit {
   @Input() disciplinaActual!: Disciplina;
   @Input() formacionActual!: iFormacion[];
   formacionMostrar!: iFormacion[];
-  editando: boolean = false;
-  agregando: boolean = false;
+  agregandomodificando: boolean = false;
+  public amodificar!: Formacion;
 
-  constructor(public autServicio: AutenticacionService) {
+  constructor(public autServicio: AutenticacionService, public bdService: BaseDeDatosService, private ruta: Router) {
   }
 
   ngOnInit(): void {
+  }
+  reloadComponent() {
+    let currentUrl = this.ruta.url;
+    this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.ruta.onSameUrlNavigation = 'reload';
+    this.ruta.navigate([currentUrl]);
   }
 
   ngOnChanges(): void {
@@ -26,14 +34,28 @@ export class FormacionComponent implements OnInit {
   }
 
   btnAgregar(evento: Event): void {
-    this.agregando = true;
+    this.agregandomodificando = true;
   }
+
+  btnModificar(evento: Event, formacion: Formacion): void {
+    this.amodificar = formacion;
+    this.agregandomodificando = true;
+  }
+
+  btnEliminar(evento: Event, formacion: Formacion): void {
+    this.bdService.delFormacion(formacion).subscribe();
+    this.formacionActual.slice(this.formacionActual.findIndex(x => x == formacion), 1);
+    this.agregandomodificando = false;
+    this.reloadComponent();
+  }
+
   btnDescartar(evento: Event): void {
-    this.agregando = false;
+    this.agregandomodificando = false;
   }
-  recibirformacion(formacion:iFormacion): void {
-    this.formacionActual.push(formacion);
-    this.agregando = false;
-    this.ngOnInit();
+
+  recibirformacion(formacion: iFormacion): void {
+    if (formacion.id_educacion != undefined) { this.formacionActual.push(formacion); };
+    this.agregandomodificando = false;
+    this.reloadComponent();
   }
 }

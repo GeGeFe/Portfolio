@@ -4,14 +4,14 @@
     {{formacion.logo}} - {{formacion.institucion}}<br>
     {{formacion.fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.fecha_Final|date:"dd/MM/yyyy"}}<br>
     <mat-card-actions *ngIf="autServicio.logueado()">
-        <button mat-button> Editar </button>
-        <button mat-button> Eliminar </button>
+        <button mat-button *ngIf="!agregandomodificando" (click)="btnModificar($event, formacion)"> Editar </button>
+        <button mat-button *ngIf="!agregandomodificando" (click)="btnEliminar($event, formacion)"> Eliminar </button>
     </mat-card-actions>
 </mat-card>
-<button mat-button *ngIf="autServicio.logueado()&&!agregando" (click)="btnAgregar($event)"> Agregar </button>
+<button mat-button *ngIf="autServicio.logueado()&&!agregandomodificando" (click)="btnAgregar($event)" > Agregar </button>
 
-<mat-card *ngIf="agregando">
-    <app-editformacion (nuevaformacion)="recibirformacion($event)" [disciplinaActual]="disciplinaActual"></app-editformacion>
+<mat-card *ngIf="agregandomodificando">
+    <app-editformacion (nuevaformacion)="recibirformacion($event)" [disciplinaActual]="disciplinaActual" [formacion]="amodificar"></app-editformacion>
     <mat-card-actions>
         <button mat-button (click)="btnDescartar($event)"> Descartar </button>
     </mat-card-actions>
