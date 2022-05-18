@@ -43,10 +43,12 @@ export class FormacionComponent implements OnInit {
   }
 
   btnEliminar(evento: Event, formacion: Formacion): void {
-    this.bdService.delFormacion(formacion).subscribe();
-    this.formacionActual.slice(this.formacionActual.findIndex(x => x == formacion), 1);
-    this.agregandomodificando = false;
-    this.reloadComponent();
+    if (confirm("¿Realmente quiere borrar esta formación?")) {
+      this.bdService.delFormacion(formacion).subscribe();
+      this.formacionActual.slice(this.formacionActual.findIndex(x => x == formacion), 1);
+      this.agregandomodificando = false;
+      this.reloadComponent();
+    }
   }
 
   btnDescartar(evento: Event): void {

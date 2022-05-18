@@ -24,7 +24,7 @@ export class BaseDeDatosService {
   }
 
   delFormacion(formacion: iFormacion) {
-    return this.http.delete(`${this.url}formacion/borrar/`+formacion.id_educacion);
+    return this.http.delete(`${this.url}formacion/borrar/` + formacion.id_educacion);
   }
 
   setFormacion(formacion: iFormacion): Observable<any> {
@@ -35,7 +35,6 @@ export class BaseDeDatosService {
       'Access-Control-Allow-Origin': '*'
     });
     let options = { 'headers': headers };
-
     return this.http.post(`${this.url}personas/1/agregarFormacion`, { // Cambiar luego el 1 por personaActual
       id_educacion: formacion.id_educacion,
       tipo: formacion.tipo,
@@ -46,11 +45,8 @@ export class BaseDeDatosService {
       institucion: formacion.institucion,
       disciplina: formacion.disciplina
     }
-      , options).pipe(map(datos => {
-        console.log('Llego hasta aca la concha de la lora.');
-        return datos;
-      }
-      ));
+      , options).pipe(map(datos => { return datos; })
+      );
   }
 
   getProyectos(idPersona: number): Proyecto[] {
