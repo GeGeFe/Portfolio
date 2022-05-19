@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     imports: [
@@ -37,7 +38,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         BrowserAnimationsModule,
         MatProgressSpinnerModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatDialogModule
     ],
     exports: [
         MatGridListModule,
@@ -49,7 +51,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         BrowserAnimationsModule,
         MatProgressSpinnerModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatDialogModule
     ]
 })
 export class MaterialModule { };

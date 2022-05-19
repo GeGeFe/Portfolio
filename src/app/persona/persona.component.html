@@ -29,7 +29,7 @@
         </mat-select>
     </mat-form-field>
     <div *ngIf="disciplinaActual!=undefined">
-        <app-experiencia [idPersona]="personaActual.idPersona"></app-experiencia>
+        <app-experiencia [experienciaActual]="experienciaActual" [disciplinaActual]="disciplinaActual"></app-experiencia>
         <app-proyectos [idPersona]="personaActual.idPersona"></app-proyectos>
         <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplinaActual"></app-formacion>
     </div>

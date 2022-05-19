@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { BaseDeDatosService } from '../servicios/base-de-datos.service';
 import { AutenticacionService } from '../servicios/autenticacion.service';
-import { Disciplina, iFormacion, Persona } from '../interfaces';
+import { Disciplina, Experiencia, iFormacion, Persona } from '../interfaces';
 
 @Component({
   selector: 'app-persona',
@@ -11,8 +11,10 @@ import { Disciplina, iFormacion, Persona } from '../interfaces';
 export class PersonaComponent implements OnInit {
   public personaActual!: Persona;
   public formacionActual: iFormacion[] = [];
+  public experienciaActual: Experiencia[]=[];
   public disciplinas: Disciplina[] = [];
   public disciplinaActual!: Disciplina;
+  srcResult: any;
 
   constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService) {
   }
@@ -30,10 +32,25 @@ export class PersonaComponent implements OnInit {
         Acerca_de: JSON.parse(JSON.stringify(datos)).acerca_de
       }
       this.formacionActual = JSON.parse(JSON.stringify(datos)).formacion;
+      this.experienciaActual= JSON.parse(JSON.stringify(datos)).experiencia;
     });
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))
     });
+  }
+
+  onFileSelected() {
+    const inputNode: any = document.querySelector('#file');
+  
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+  
+      reader.onload = (e: any) => {
+        this.srcResult = e.target.result;
+      };
+  
+      reader.readAsArrayBuffer(inputNode.files[0]);
+    }
   }
 }
 

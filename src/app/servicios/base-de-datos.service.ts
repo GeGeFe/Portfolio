@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //import { environment } from 'src/environments/environment';
-import { Persona } from '../interfaces';
+import { Experiencia, Persona } from '../interfaces';
 import { iFormacion } from '../interfaces';
 import { Proyecto } from '../interfaces';
 import { map, Observable } from 'rxjs';
@@ -27,6 +27,10 @@ export class BaseDeDatosService {
     return this.http.delete(`${this.url}formacion/borrar/` + formacion.id_educacion);
   }
 
+  delExperiencia(experiencia: Experiencia) {
+    return this.http.delete(`${this.url}experiencia/borrar/` + experiencia.id_experiencia);
+  }
+
   setFormacion(formacion: iFormacion): Observable<any> {
     let headers = new HttpHeaders({
       'Access-Control-Allow-Headers': 'Content-Type',
@@ -44,6 +48,30 @@ export class BaseDeDatosService {
       logo: formacion.logo,
       institucion: formacion.institucion,
       disciplina: formacion.disciplina
+    }
+      , options).pipe(map(datos => { return datos; })
+      );
+  }
+
+  setExperiencia(experiencia: Experiencia): Observable<any> {
+    let headers = new HttpHeaders({
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Origin': '*'
+    });
+    let options = { 'headers': headers };
+    return this.http.post(`${this.url}personas/1/agregarExperiencia`, { // Cambiar luego el 1 por personaActual
+      id_experiencia: experiencia.id_experiencia,
+      puesto: experiencia.puesto,
+      descripcion_Tareas: experiencia.descripcion_Tareas,
+//      fecha_Inicio: experiencia.fecha_Inicio.getFullYear() + "-" + experiencia.fecha_Inicio.getMonth().toString().padStart(2, "0") + "-" + experiencia.fecha_Inicio.getDay().toString().padStart(2, "0"),
+//      fecha_Final: experiencia.fecha_Final.getFullYear() + "-" + experiencia.fecha_Final.getMonth().toString().padStart(2, "0") + "-" + experiencia.fecha_Final.getDay().toString().padStart(2, "0"),
+      fecha_Inicio: experiencia.fecha_Inicio,
+      fecha_Final: experiencia.fecha_Final,
+      logo_Empresa: experiencia.logo_Empresa,
+      nombre_Empresa: experiencia.nombre_Empresa,
+      disciplina: experiencia.disciplina
     }
       , options).pipe(map(datos => { return datos; })
       );

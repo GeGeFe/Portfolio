@@ -22,6 +22,7 @@ export class FormacionComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   reloadComponent() {
     let currentUrl = this.ruta.url;
     this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;

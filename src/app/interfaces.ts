@@ -36,12 +36,12 @@ export interface Proyecto {
 }
 
 export interface Experiencia {
-    idExperiencia: number;
+    id_experiencia: number;
     puesto: string;
     fecha_Inicio: Date;
     fecha_Final: Date;
     logo_Empresa: string;
-    descrip_tareas: string;
+    descripcion_Tareas: string;
     nombre_Empresa: string;
     disciplina: Disciplina
 }

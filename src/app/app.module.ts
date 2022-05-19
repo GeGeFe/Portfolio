@@ -20,6 +20,7 @@ import { AutenticacionService } from './servicios/autenticacion.service';
 import { interceptorProvider } from './servicios/interceptor.service';
 import { MaterialModule } from './material.module';
 import { EditformacionComponent } from './persona/formacion/editformacion/editformacion.component';
+import { EditexperienciaComponent } from './persona/experiencia/editexperiencia/editexperiencia.component';
 
 
 
@@ -34,7 +35,8 @@ import { EditformacionComponent } from './persona/formacion/editformacion/editfo
     HomeComponent,
     NotfoundComponent,
     SesionComponent,
-    EditformacionComponent
+    EditformacionComponent,
+    EditexperienciaComponent
   ],
   imports: [
     BrowserModule,
