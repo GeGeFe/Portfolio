@@ -1,35 +1,30 @@
-<div>
-    <h1 mat-dialog-title>Eperiencia</h1>
-    <div mat-dialog-content>
-        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+<h1 mat-dialog-title>Eperiencia</h1>
+<div mat-dialog-content>
+    <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.puesto" type="texto" placeholder="Ingrese el puesto">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.descripcion_Tareas" type="texto"
+                placeholder="Ingrese las tareas que realiza">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.logo_Empresa" type="text" placeholder="Ingrese el logo de la empresa">
+        </mat-form-field>
 
-            <mat-form-field>
-                <input matInput [(ngModel)]="data.puesto" type="texto" placeholder="Ingrese el puesto">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput [(ngModel)]="data.descripcion_Tareas" type="texto"
-                    placeholder="Ingrese las tareas que realiza">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput [(ngModel)]="data.logo_Empresa" type="text" placeholder="Ingrese el logo de la empresa">
-            </mat-form-field>
-
-            <mat-form-field>
-                <input matInput [(ngModel)]="data.nombre_Empresa" type="text"
-                    placeholder="Ingrese el nombre de la empresa">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput [(ngModel)]="data.fecha_Inicio" type="date"
-                    placeholder="Ingrese la fecha en la que comenzó">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput [(ngModel)]="data.fecha_Final" type="date"
-                    placeholder="Ingrese la fecha en la que terminó">
-            </mat-form-field>
-        </div>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.nombre_Empresa" type="text" placeholder="Ingrese el nombre de la empresa">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.fecha_Inicio" type="date"
+                placeholder="Ingrese la fecha en la que comenzó">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.fecha_Final" type="date" placeholder="Ingrese la fecha en la que terminó">
+        </mat-form-field>
     </div>
-    <div mat-dialog-actions>
-        <button mat-button (click)="cancelar()">Cancelar</button>
-        <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Confirmar</button>
-    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Confirmar</button>
 </div>
