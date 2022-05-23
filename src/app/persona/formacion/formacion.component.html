@@ -3,7 +3,7 @@
         <mat-card-title class="mat-elevation-z18"> Formación ({{disciplinaActual.nombre}})</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <mat-card *ngFor="let formacion of formacionMostrar" class="mat-elevation-z18">
+        <mat-card class="formacion mat-elevation-z18"*ngFor="let formacion of formacionMostrar">
             <mat-card-header>
                 <mat-card-title>{{formacion.titulo}}</mat-card-title>
                 <img mat-card-avatar src={{formacion.logo}} alt="" />
@@ -15,25 +15,12 @@
                     {{formacion.fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.fecha_Final|date:"dd/MM/yyyy"}}<br>
                 </div>
                 <mat-card-actions *ngIf="autServicio.logueado()">
-                    <button mat-raised-button *ngIf="!agregandomodificando" (click)="btnModificar($event, formacion)">
-                        Editar
-                    </button>
-                    <button mat-raised-button *ngIf="!agregandomodificando" (click)="btnEliminar($event, formacion)">
-                        Eliminar
-                    </button>
+                    <button mat-raised-button (click)="btnModificar($event, formacion)"> Editar </button>
+                    <button mat-raised-button (click)="btnEliminar($event, formacion)"> Eliminar </button>
                 </mat-card-actions>
             </mat-card-content>
         </mat-card>
-        <button mat-raised-button *ngIf="autServicio.logueado()&&!agregandomodificando" (click)="btnAgregar($event)">
-            Agregar formacion
-        </button>
-
-        <mat-card *ngIf="agregandomodificando">
-            <app-editformacion (nuevaformacion)="recibirformacion($event)" [disciplinaActual]="disciplinaActual"
-                [formacion]="amodificar"></app-editformacion>
-            <mat-card-actions>
-                <button mat-raised-button (click)="btnDescartar($event)"> Descartar </button>
-            </mat-card-actions>
-        </mat-card>
+        <button mat-raised-button *ngIf="autServicio.logueado()" (click)="abrirDialogo()">
+            Agregar formacion </button>
     </mat-card-content>
 </mat-card>

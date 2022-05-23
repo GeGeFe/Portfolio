@@ -1,57 +1,33 @@
-<form class="mat-elevation-z18" [formGroup]="unaformacion" (ngSubmit)="guardarFormacion($event)">
-    <mat-form-field appearance="fill">
-        <mat-label><b> Tipo </b> </mat-label>
-        <mat-select matNativeControl placeholder="Seleccione un tipo" formControlName="tipo">
-            <mat-option *ngFor="let untipo of tipoformacion | keyvalue" value="{{untipo.value}}">
-                {{untipo.value}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field><br><br>
-    <mat-form-field appearance="fill">
-        <mat-label><b> Titulo </b> </mat-label>
-        <input matInput placeholder="Titulo de la formacion" formControlName="titulo">
-        <!--        <mat-error *ngIf="getUsuario()?.errors && getUsuario()?.touched">
-            <div *ngIf="getUsuario()?.hasError('minlength')"> El usuario debe tener al menos 8 caractéres. </div>
-            <div *ngIf="getUsuario()?.hasError('required')"> Debe ingresar un usuario. </div>
-            <div *ngIf="getUsuario()?.hasError('pattern')"> El usuario solo puede contener números o letras. </div>
-        </mat-error>
-    -->
-    </mat-form-field>
-    <br><br>
-    <mat-form-field appearance="fill">
-        <mat-label><b> Fecha de inicio </b> </mat-label>
-        <input matInput [matDatepicker]="picker1" placeholder="Fecha de inicio" formControlName="fecha_inicio">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field><br>
-    <mat-form-field appearance="fill">
-        <mat-label><b> Fecha de finalización </b> </mat-label>
-        <input matInput [matDatepicker]="picker2" placeholder="Fecha de finalización" formControlName="fecha_final">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-    <br><br>
-    <mat-form-field appearance="fill">
-        <mat-label> <b> Logo de la institución </b></mat-label>
-        <input matInput placeholder="https://" formControlName="logo">
-    </mat-form-field><br>
-    <mat-form-field appearance="fill">
-        <mat-label><b> institución </b> </mat-label>
-        <input matInput placeholder="El nombre de la institución" formControlName="institucion">
-    </mat-form-field>
-    <button [disabled]="
-        getTipo()?.errors ||
-        getFFinal()?.errors ||
-        getFInicio()?.errors ||
-        getLogo()?.errors ||
-        getTitulo()?.errors ||
-        getInstitucion()?.errors" type="submit" color="primary">
-        Guardar
-    </button>
-</form>
-
-
-
-<!--    {{formacion.logo}} - {{formacion.institucion}}<br>
-    {{formacion.fecha_Inicio|date:"dd/MM/yyyy"}} - {{formacion.fecha_Final|date:"dd/MM/yyyy"}}<br>
--->
+<h1 mat-dialog-title>Formacion</h1>
+<div mat-dialog-content>
+    <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.titulo" type="texto" placeholder="Ingrese el título de la formación">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select matInput [(ngModel)]="data.tipo" type="texto">
+                <mat-option *ngFor="let tipo of losTipos" value={{tipo}} > {{tipo}} </mat-option>
+            </mat-select>
+<!--            <input matInput [(ngModel)]="data.tipo" type="texto" placeholder="Ingrese el tipo de formación"> -->
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.logo" type="text"
+                placeholder="Ingrese el logo de la institución que abala">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.institucion" type="text"
+                placeholder="Ingrese el nombre de la institución que abala el título">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.fecha_Inicio" type="date"
+                placeholder="Ingrese la fecha en la que comenzó">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.fecha_Final" type="date" placeholder="Ingrese la fecha en la que terminó">
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Confirmar</button>
+</div>

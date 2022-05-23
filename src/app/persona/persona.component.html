@@ -11,26 +11,27 @@
         </mat-card-header>
         <img mat-card-image class="banner" src={{personaActual.Banner}} alt="Imagen descriptiva">
         <mat-card-content>
-            <p>
-                {{personaActual.Acerca_de}}
-            </p>
+            {{personaActual.Acerca_de}}
         </mat-card-content>
         <mat-card-actions *ngIf="autServicio.logueado()">
             <button mat-button> Editar </button>
             <button mat-button> Eliminar </button>
         </mat-card-actions>
+        <div style="text-align: right;">
+            <mat-form-field appearance="fill">
+                <mat-label>Disciplina</mat-label>
+                <mat-select [(value)]="disciplinaActual">
+                    <mat-option *ngFor="let disciplina of disciplinas" [value]="disciplina">
+                        {{disciplina.nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </mat-card>
-    <mat-form-field appearance="fill">
-        <mat-label>Disciplina</mat-label>
-        <mat-select [(value)]="disciplinaActual">
-            <mat-option *ngFor="let disciplina of disciplinas" [value]="disciplina">
-                {{disciplina.nombre}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+
     <div *ngIf="disciplinaActual!=undefined">
         <app-experiencia [experienciaActual]="experienciaActual" [disciplinaActual]="disciplinaActual"></app-experiencia>
-        <app-proyectos [idPersona]="personaActual.idPersona"></app-proyectos>
+        <app-proyectos [proyectosActual]="proyectosActual" [disciplinaActual]="disciplinaActual"></app-proyectos>
         <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplinaActual"></app-formacion>
     </div>
 </div>

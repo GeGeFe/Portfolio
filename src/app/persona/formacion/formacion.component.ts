@@ -4,6 +4,8 @@ import { Disciplina, iFormacion } from '../../interfaces';
 import { BaseDeDatosService } from 'src/app/servicios/base-de-datos.service';
 import { Formacion } from './formacion';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { EditformacionComponent } from './editformacion/editformacion.component';
 
 @Component({
   selector: 'app-formacion',
@@ -14,15 +16,14 @@ export class FormacionComponent implements OnInit {
   @Input() disciplinaActual!: Disciplina;
   @Input() formacionActual!: iFormacion[];
   formacionMostrar!: iFormacion[];
-  agregandomodificando: boolean = false;
   public amodificar!: Formacion;
 
-  constructor(public autServicio: AutenticacionService, public bdService: BaseDeDatosService, private ruta: Router) {
+  constructor(public autServicio: AutenticacionService, public bdService: BaseDeDatosService, private ruta: Router, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
   }
-  
+
   reloadComponent() {
     let currentUrl = this.ruta.url;
     this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -34,31 +35,45 @@ export class FormacionComponent implements OnInit {
     this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); });
   }
 
-  btnAgregar(evento: Event): void {
-    this.agregandomodificando = true;
-  }
-
   btnModificar(evento: Event, formacion: Formacion): void {
     this.amodificar = formacion;
-    this.agregandomodificando = true;
+    this.abrirDialogo()
+    this.reloadComponent();
   }
 
   btnEliminar(evento: Event, formacion: Formacion): void {
     if (confirm("¿Realmente quiere borrar esta formación?")) {
       this.bdService.delFormacion(formacion).subscribe();
       this.formacionActual.slice(this.formacionActual.findIndex(x => x == formacion), 1);
-      this.agregandomodificando = false;
       this.reloadComponent();
     }
   }
 
-  btnDescartar(evento: Event): void {
-    this.agregandomodificando = false;
-  }
+  abrirDialogo() {
+    const dialogo1 = this.dialog.open(EditformacionComponent, {
+      data: (this.amodificar != undefined) ? {
+        id_educacion: this.amodificar.id_educacion,
+        titulo: this.amodificar.titulo,
+        tipo: this.amodificar.tipo,
+        fecha_Inicio: this.amodificar.fecha_Inicio,
+        fecha_Final: this.amodificar.fecha_Final,
+        logo: this.amodificar.logo,
+        institucion: this.amodificar.institucion,
+        disciplina: this.amodificar.disciplina
 
-  recibirformacion(formacion: iFormacion): void {
-    if (formacion.id_educacion != undefined) { this.formacionActual.push(formacion); };
-    this.agregandomodificando = false;
+      } : {}
+    });
+
+    dialogo1.afterClosed().subscribe(formacion => {
+      formacion.disciplina = this.disciplinaActual;
+      if (formacion.id_educacion == undefined) {
+        this.formacionActual.push(formacion);
+        formacion.id_educacion = 0;
+      }
+      if (formacion.id_educacion != undefined) {
+        this.bdService.setExperiencia(formacion).subscribe();
+      };
+    });
     this.reloadComponent();
   }
 }

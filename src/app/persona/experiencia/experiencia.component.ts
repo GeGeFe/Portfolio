@@ -32,7 +32,6 @@ export class ExperienciaComponent implements OnInit {
     this.experienciaMostrar = this.experienciaActual.filter(e => { return (e.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); });
   }
 
-
   btnModificar(evento: Event, experiencia: Experiencia): void {
     this.amodificar = experiencia;
     this.abrirDialogo()

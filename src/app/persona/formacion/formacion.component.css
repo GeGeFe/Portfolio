@@ -1,9 +1,9 @@
-* {
-    background-color: blue;
+.mat-card {
+    background-color:  hsl(14, 34%, 55%);
     padding: 10px;
     margin: 10px;
 }
 
-#formacion {
-    background-color:rgb(0, 0, 143);
+.formacion {
+    background-color: hsl(15, 89%, 76%);
 }

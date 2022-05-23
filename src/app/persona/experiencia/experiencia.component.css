@@ -1,9 +1,9 @@
-* {
-    background-color: rgb(106, 106, 238);
+.mat-card {
+    background-color:  hsl(14, 34%, 55%);
     padding: 10px;
     margin: 10px;
 }
 
-#experiencia {
-    background-color:  rgb(55, 55, 124);
+.experiencia {
+    background-color: hsl(15, 89%, 76%);
 }

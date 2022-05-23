@@ -83,9 +83,9 @@ export class BaseDeDatosService {
         idProyecto: 0,
         nombre: "Este mismo proyecto",
         fecha: new Date("02/01/2022"),
-        descripcion: "string;",
+        descripcion: "Fue un quilombo pero quedó bonito. ¿No?",
         enlace: "string;",
-        disciplina: { id_disciplina: 0, nombre: "Programación" } // *** Aquí solo debería ir el id de la disciplina.
+        disciplina: { id_disciplina: 1, nombre: "Computación" }
       },
       {
         idProyecto: 1,
@@ -93,7 +93,7 @@ export class BaseDeDatosService {
         fecha: new Date("03/01/2022"),
         descripcion: "Piripi pipipi",
         enlace: "Por ahí en interné. Busquelón",
-        disciplina: { id_disciplina: 1, nombre: "Teatro" } // *** Aquí solo debería ir el id de la disciplina.
+        disciplina: { id_disciplina: 1, nombre: "Computación" }
       }
     ];
   }

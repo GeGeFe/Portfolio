@@ -1,6 +1,6 @@
 <mat-grid-list cols="3" rowHeight="4:1">
     <mat-grid-tile colspan="1"><img src="../../assets/img/argprogsf.png"/></mat-grid-tile>
-    <mat-grid-tile colspan="1"><H1>Portfolio</H1></mat-grid-tile>
+    <mat-grid-tile colspan="1">PORTFOLIO</mat-grid-tile>
     <mat-grid-tile colspan="1" *ngIf="!this.autServicio.logueado()"><a routerLink="/login" routerLinkActive="active"> Inicio de sesión </a></mat-grid-tile>
     <mat-grid-tile colspan="1" *ngIf="this.autServicio.logueado()"><a routerLink="/logout" routerLinkActive="active"> Cerrar sesión </a></mat-grid-tile>
 </mat-grid-list>

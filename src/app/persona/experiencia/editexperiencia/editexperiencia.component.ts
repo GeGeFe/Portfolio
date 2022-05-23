@@ -1,7 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Experiencia } from 'src/app/interfaces';
-import { Disciplina } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-editexperiencia',
@@ -13,8 +12,7 @@ export class EditexperienciaComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EditexperienciaComponent>, @Inject(MAT_DIALOG_DATA) public data: Experiencia) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   cancelar() {
     this.dialogRef.close();

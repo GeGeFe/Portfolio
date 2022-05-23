@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { BaseDeDatosService } from '../servicios/base-de-datos.service';
 import { AutenticacionService } from '../servicios/autenticacion.service';
-import { Disciplina, Experiencia, iFormacion, Persona } from '../interfaces';
+import { Disciplina, Experiencia, iFormacion, Persona, Proyecto } from '../interfaces';
 
 @Component({
   selector: 'app-persona',
@@ -12,6 +12,7 @@ export class PersonaComponent implements OnInit {
   public personaActual!: Persona;
   public formacionActual: iFormacion[] = [];
   public experienciaActual: Experiencia[]=[];
+  public proyectosActual: Proyecto[]=[];
   public disciplinas: Disciplina[] = [];
   public disciplinaActual!: Disciplina;
   srcResult: any;
@@ -37,6 +38,9 @@ export class PersonaComponent implements OnInit {
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))
     });
+
+    // *** Solo para proba ***
+    this.proyectosActual=this.bdService.getProyectos(1);
   }
 
   onFileSelected() {

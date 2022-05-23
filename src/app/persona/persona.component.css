@@ -1,13 +1,16 @@
+* {
+  font-size: large;
+}
 #card-persona {
-    background: rgb(192, 137, 123);
+    background: #afea9e;
     padding: 10px;
     margin: 10px;
 }
 
 .banner {
     object-fit: fill; /*this makes the image in src fit to the size specified below*/
-    width: 90%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    height: 50%;
+    width: 45%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+    height: 30%;
     display: block;
     margin-left: auto;
     margin-right: auto;
