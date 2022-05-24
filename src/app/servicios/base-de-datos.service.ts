@@ -2,34 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //import { environment } from 'src/environments/environment';
-import { Experiencia, Persona } from '../interfaces';
+import { Experiencia } from '../interfaces';
 import { iFormacion } from '../interfaces';
 import { Proyecto } from '../interfaces';
 import { map, Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class BaseDeDatosService {
   url = "http://192.168.0.7:8080/";
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
-  getPersona(idPersona: number) {
-    return this.http.get(`${this.url}personas/traer/${idPersona}`);
-  }
+  getPersona(id_Persona: number) { return this.http.get(`${this.url}personas/traer/${id_Persona}`); }
 
-  getDisciplinas() {
-    return this.http.get(`${this.url}disciplina/traer`);
-  }
+  getDisciplinas() { return this.http.get(`${this.url}disciplina/traer`); }
 
-  delFormacion(formacion: iFormacion) {
-    return this.http.delete(`${this.url}formacion/borrar/` + formacion.id_educacion);
-  }
+  delFormacion(formacion: iFormacion) { return this.http.delete(`${this.url}formacion/borrar/` + formacion.id_educacion); }
 
-  delExperiencia(experiencia: Experiencia) {
-    return this.http.delete(`${this.url}experiencia/borrar/` + experiencia.id_experiencia);
-  }
+  delExperiencia(experiencia: Experiencia) { return this.http.delete(`${this.url}experiencia/borrar/` + experiencia.id_experiencia); }
 
   setFormacion(formacion: iFormacion): Observable<any> {
     let headers = new HttpHeaders({
@@ -43,8 +32,8 @@ export class BaseDeDatosService {
       id_educacion: formacion.id_educacion,
       tipo: formacion.tipo,
       titulo: formacion.titulo,
-      fecha_Inicio: formacion.fecha_Inicio.getFullYear() + "-" + formacion.fecha_Inicio.getMonth().toString().padStart(2, "0") + "-" + formacion.fecha_Inicio.getDay().toString().padStart(2, "0"),
-      fecha_Final: formacion.fecha_Final.getFullYear() + "-" + formacion.fecha_Final.getMonth().toString().padStart(2, "0") + "-" + formacion.fecha_Final.getDay().toString().padStart(2, "0"),
+      fecha_Inicio: formacion.fecha_Inicio,
+      fecha_Final: formacion.fecha_Final,
       logo: formacion.logo,
       institucion: formacion.institucion,
       disciplina: formacion.disciplina
@@ -65,8 +54,6 @@ export class BaseDeDatosService {
       id_experiencia: experiencia.id_experiencia,
       puesto: experiencia.puesto,
       descripcion_Tareas: experiencia.descripcion_Tareas,
-//      fecha_Inicio: experiencia.fecha_Inicio.getFullYear() + "-" + experiencia.fecha_Inicio.getMonth().toString().padStart(2, "0") + "-" + experiencia.fecha_Inicio.getDay().toString().padStart(2, "0"),
-//      fecha_Final: experiencia.fecha_Final.getFullYear() + "-" + experiencia.fecha_Final.getMonth().toString().padStart(2, "0") + "-" + experiencia.fecha_Final.getDay().toString().padStart(2, "0"),
       fecha_Inicio: experiencia.fecha_Inicio,
       fecha_Final: experiencia.fecha_Final,
       logo_Empresa: experiencia.logo_Empresa,

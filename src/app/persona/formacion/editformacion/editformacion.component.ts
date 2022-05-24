@@ -18,8 +18,6 @@ export class EditformacionComponent implements OnInit {
       this.losTipos.push(tipo);
       }
     }
-    console.log(TiposFormacion);
-    console.log(this.losTipos);
   }
 
   ngOnInit(): void { }

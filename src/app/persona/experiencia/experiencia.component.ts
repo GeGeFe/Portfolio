@@ -21,32 +21,38 @@ export class ExperienciaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  reloadComponent() {
+  reloadComponent(): void {
     let currentUrl = this.ruta.url;
     this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;
     this.ruta.onSameUrlNavigation = 'reload';
     this.ruta.navigate([currentUrl]);
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
+    this.ActualizarMuestra();
+  }
+
+  ActualizarMuestra(): void {
     this.experienciaMostrar = this.experienciaActual.filter(e => { return (e.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); });
   }
 
   btnModificar(evento: Event, experiencia: Experiencia): void {
     this.amodificar = experiencia;
     this.abrirDialogo()
+    this.ActualizarMuestra();
     this.reloadComponent();
   }
 
   btnEliminar(evento: Event, experiencia: Experiencia): void {
-    if (confirm("¿Realmente quiere borrar esta formación?")) {
+    if (confirm("¿Realmente quiere borrar esta experiencia?")) {
       this.bdService.delExperiencia(experiencia).subscribe();
       this.experienciaActual.slice(this.experienciaActual.findIndex(x => x == experiencia), 1);
+      this.ActualizarMuestra();
       this.reloadComponent();
     }
   }
 
-  abrirDialogo() {
+  abrirDialogo(): void {
     const dialogo1 = this.dialog.open(EditexperienciaComponent, {
       data: (this.amodificar != undefined) ? {
         id_experiencia: this.amodificar.id_experiencia,
@@ -57,7 +63,6 @@ export class ExperienciaComponent implements OnInit {
         fecha_Inicio: this.amodificar.fecha_Inicio,
         fecha_Final: this.amodificar.fecha_Final,
         disciplina: this.amodificar.disciplina
-
       } : {}
     });
 
@@ -71,6 +76,7 @@ export class ExperienciaComponent implements OnInit {
         this.bdService.setExperiencia(experiencia).subscribe();
       };
     });
+    this.ActualizarMuestra();
     this.reloadComponent();
   }
 }

@@ -24,7 +24,7 @@ export class FormacionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  reloadComponent() {
+  reloadComponent(): void {
     let currentUrl = this.ruta.url;
     this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;
     this.ruta.onSameUrlNavigation = 'reload';
@@ -32,12 +32,19 @@ export class FormacionComponent implements OnInit {
   }
 
   ngOnChanges(): void {
+    this.ActualizarMuestra();
+  }
+
+  ActualizarMuestra(): void {
     this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); });
+    console.log("formacionActual: " + JSON.stringify(this.formacionActual));
+    console.log("formacionMostrar: " + JSON.stringify(this.formacionMostrar));
   }
 
   btnModificar(evento: Event, formacion: Formacion): void {
     this.amodificar = formacion;
     this.abrirDialogo()
+    this.ActualizarMuestra();
     this.reloadComponent();
   }
 
@@ -45,11 +52,12 @@ export class FormacionComponent implements OnInit {
     if (confirm("¿Realmente quiere borrar esta formación?")) {
       this.bdService.delFormacion(formacion).subscribe();
       this.formacionActual.slice(this.formacionActual.findIndex(x => x == formacion), 1);
+      this.ActualizarMuestra();
       this.reloadComponent();
     }
   }
 
-  abrirDialogo() {
+  abrirDialogo(): void {
     const dialogo1 = this.dialog.open(EditformacionComponent, {
       data: (this.amodificar != undefined) ? {
         id_educacion: this.amodificar.id_educacion,
@@ -60,7 +68,6 @@ export class FormacionComponent implements OnInit {
         logo: this.amodificar.logo,
         institucion: this.amodificar.institucion,
         disciplina: this.amodificar.disciplina
-
       } : {}
     });
 
@@ -71,9 +78,10 @@ export class FormacionComponent implements OnInit {
         formacion.id_educacion = 0;
       }
       if (formacion.id_educacion != undefined) {
-        this.bdService.setExperiencia(formacion).subscribe();
+        this.bdService.setFormacion(formacion).subscribe();
       };
     });
     this.reloadComponent();
+    this.ActualizarMuestra();
   }
 }
