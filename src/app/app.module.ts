@@ -21,6 +21,8 @@ import { interceptorProvider } from './servicios/interceptor.service';
 import { MaterialModule } from './material.module';
 import { EditformacionComponent } from './persona/formacion/editformacion/editformacion.component';
 import { EditexperienciaComponent } from './persona/experiencia/editexperiencia/editexperiencia.component';
+import { HabilidadesComponent } from './persona/habilidades/habilidades.component';
+import { TortaComponent } from './persona/habilidades/torta/torta.component';
 
 
 
@@ -36,7 +38,9 @@ import { EditexperienciaComponent } from './persona/experiencia/editexperiencia/
     NotfoundComponent,
     SesionComponent,
     EditformacionComponent,
-    EditexperienciaComponent
+    EditexperienciaComponent,
+    HabilidadesComponent,
+    TortaComponent
   ],
   imports: [
     BrowserModule,

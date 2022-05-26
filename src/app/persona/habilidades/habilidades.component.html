@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title class="mat-elevation-z18"> Habilidades </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+        <mat-card class="experiencia mat-elevation-z18" *ngFor="let habilidad of habilidadesMostrar">
+            <mat-card-header>
+                <mat-card-title>{{ habilidad.nombre}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+            </mat-card-content>
+        </mat-card>
+    </mat-card-content>
+</mat-card>

@@ -14,8 +14,8 @@
             {{personaActual.Acerca_de}}
         </mat-card-content>
         <mat-card-actions *ngIf="autServicio.logueado()">
-            <button mat-button> Editar </button>
-            <button mat-button> Eliminar </button>
+            <button mat-raised-button> Editar <mat-icon>border_color</mat-icon> </button>
+            <button mat-raised-button> Eliminar <mat-icon>delete</mat-icon></button>
         </mat-card-actions>
         <div style="text-align: right;">
             <mat-form-field appearance="fill">
@@ -34,4 +34,5 @@
         <app-proyectos [proyectosActual]="proyectosActual" [disciplinaActual]="disciplinaActual"></app-proyectos>
         <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplinaActual"></app-formacion>
     </div>
+    <app-habilidades></app-habilidades>
 </div>

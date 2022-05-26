@@ -10,17 +10,22 @@
                 <img mat-card-avatar src={{experiencia.logo_Empresa}} alt="" />
             </mat-card-header>
             <mat-card-content>
-                Tareas realizadas: {{experiencia.descripcion_Tareas}}<br>
-                Empresa: {{experiencia.nombre_Empresa}}<br>
+                <div style="text-align: center">
+                    Tareas realizadas: {{experiencia.descripcion_Tareas}}<br>
+                    Empresa: {{experiencia.nombre_Empresa}}<br>
+                </div>
                 <div style="text-align: right;">
                     {{experiencia.fecha_Inicio|date:"dd/MM/yyyy"}} - {{experiencia.fecha_Final|date:"dd/MM/yyyy"}}<br>
                 </div>
                 <mat-card-actions *ngIf="autServicio.logueado()">
-                    <button mat-raised-button (click)="btnModificar($event, experiencia)"> Editar </button>
-                    <button mat-raised-button (click)="btnEliminar($event, experiencia)"> Eliminar </button>
+                    <button mat-raised-button (click)="btnModificar($event, experiencia)"> Editar <mat-icon>border_color
+                        </mat-icon></button>
+                    <button mat-raised-button (click)="btnEliminar($event, experiencia)"> Eliminar <mat-icon>delete
+                        </mat-icon></button>
                 </mat-card-actions>
             </mat-card-content>
         </mat-card>
-        <button mat-raised-button *ngIf="autServicio.logueado()" (click)="abrirDialogo()">Agregar experiencia</button>
+        <button mat-raised-button *ngIf="autServicio.logueado()" (click)="abrirDialogo()">Agregar experiencia<mat-icon>
+                add</mat-icon></button>
     </mat-card-content>
 </mat-card>

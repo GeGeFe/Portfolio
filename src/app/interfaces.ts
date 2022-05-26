@@ -12,7 +12,7 @@ export interface Persona {
 
 export interface Formacion {
     id_educacion: number;
-    tipo: TiposFormacion 
+    tipo: TiposFormacion
     titulo: string;
     fecha_Inicio: Date;
     fecha_Final: Date;
@@ -44,4 +44,10 @@ export interface Experiencia {
     descripcion_Tareas: string;
     nombre_Empresa: string;
     disciplina: Disciplina
+}
+
+export interface Habilidad {
+    id_habilidad: number;
+    nombre: string;
+    porcentaje: number;
 }
