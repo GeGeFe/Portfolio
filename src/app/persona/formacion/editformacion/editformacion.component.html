@@ -1,32 +1,37 @@
 <h1 mat-dialog-title>Formacion</h1>
-<mat-dialog-content>
-    <div >
+<form [formGroup]="formulario">
+    <mat-dialog-content>
         <mat-form-field>
-            <input matInput [(ngModel)]="data.titulo" type="text" placeholder="Ingrese el título de la formación">
+            <mat-label> Título </mat-label>
+            <input matInput formControlName="titulo" type="text" placeholder="Ingrese el título de la formación">
         </mat-form-field>
         <mat-form-field>
-            <mat-select matInput [(ngModel)]="data.tipo" type="text">
-                <mat-option *ngFor="let tipo of losTipos" value={{tipo}} > {{tipo}} </mat-option>
+            <mat-label> Tipo de formación </mat-label>
+            <mat-select matInput formControlName="tipo" type="text">
+                <mat-option *ngFor="let tipo of losTipos" value={{tipo}}> {{tipo}} </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <input matInput [(ngModel)]="data.logo" type="text"
+            <mat-label> Logo de la institución </mat-label>
+            <input matInput formControlName="logo" type="text"
                 placeholder="Ingrese el logo de la institución que abala">
         </mat-form-field>
         <mat-form-field>
-            <input matInput [(ngModel)]="data.institucion" type="text"
+            <mat-label> Institución </mat-label>
+            <input matInput formControlName="institucion" type="text"
                 placeholder="Ingrese el nombre de la institución que abala el título">
         </mat-form-field>
         <mat-form-field>
-            <input matInput [(ngModel)]="data.fecha_Inicio" type="date"
-                placeholder="Ingrese la fecha en la que comenzó">
+            <mat-label> Fecha de inicio </mat-label>
+            <input matInput formControlName="fecha_Inicio" type="date" placeholder="Ingrese la fecha en la que comenzó">
         </mat-form-field>
         <mat-form-field>
-            <input matInput [(ngModel)]="data.fecha_Final" type="date" placeholder="Ingrese la fecha en la que terminó">
+            <mat-label> Fecha de finalización </mat-label>
+            <input matInput formControlName="fecha_Final" type="date" placeholder="Ingrese la fecha en la que terminó">
         </mat-form-field>
-    </div>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button (click)="cancelar()">Cancelar</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Confirmar</button>
-</mat-dialog-actions>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="cancelar()">Cancelar</button>
+        <button mat-button (click)="aceptar()" [disabled]="!formulario.valid">Confirmar</button>
+    </mat-dialog-actions>
+</form>

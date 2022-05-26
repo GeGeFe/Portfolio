@@ -10,7 +10,7 @@ export interface Persona {
     Acerca_de: string;
 }
 
-export interface iFormacion {
+export interface Formacion {
     id_educacion: number;
     tipo: TiposFormacion 
     titulo: string;

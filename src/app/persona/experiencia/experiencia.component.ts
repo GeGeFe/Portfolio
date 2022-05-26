@@ -1,12 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { Disciplina, Experiencia } from 'src/app/interfaces';
 import { AutenticacionService } from 'src/app/servicios/autenticacion.service';
+import { Router } from '@angular/router';
 import { BaseDeDatosService } from 'src/app/servicios/base-de-datos.service';
+import { Disciplina, Experiencia } from 'src/app/interfaces';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditexperienciaComponent } from './editexperiencia/editexperiencia.component';
+
 @Component({
   selector: 'app-experiencia',
   templateUrl: './experiencia.component.html',
@@ -20,8 +19,7 @@ export class ExperienciaComponent implements OnInit {
 
   constructor(public autServicio: AutenticacionService, public bdService: BaseDeDatosService, private ruta: Router, public dialog: MatDialog) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   reloadComponent(): void {
     let currentUrl = this.ruta.url;
@@ -30,19 +28,17 @@ export class ExperienciaComponent implements OnInit {
     this.ruta.navigate([currentUrl]);
   }
 
-  ngOnChanges(): void {
-    this.ActualizarMuestra();
-  }
+  ngOnChanges(): void { this.ActualizarMuestra(); }
 
   ActualizarMuestra(): void {
     this.experienciaMostrar = this.experienciaActual.filter(e => { return (e.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); });
+  //  this.reloadComponent();
   }
 
   btnModificar(evento: Event, experiencia: Experiencia): void {
     this.amodificar = experiencia;
     this.abrirDialogo()
     this.ActualizarMuestra();
-    this.reloadComponent();
   }
 
   btnEliminar(evento: Event, experiencia: Experiencia): void {
@@ -50,17 +46,14 @@ export class ExperienciaComponent implements OnInit {
       this.bdService.delExperiencia(experiencia).subscribe();
       this.experienciaActual.slice(this.experienciaActual.findIndex(x => x == experiencia), 1);
       this.ActualizarMuestra();
-      this.reloadComponent();
     }
   }
 
   abrirDialogo(): void {
     const dialogoConfig = new MatDialogConfig();
-    
-    dialogoConfig.disableClose= true;
-    dialogoConfig.autoFocus=true;
-    console.log(this.amodificar.id_experiencia);
-    dialogoConfig.data=(this.amodificar != undefined) ? {
+    dialogoConfig.disableClose = true;
+    dialogoConfig.autoFocus = true;
+    dialogoConfig.data = (this.amodificar != undefined) ? {
       id_experiencia: this.amodificar.id_experiencia,
       puesto: this.amodificar.puesto,
       descripcion_Tareas: this.amodificar.descripcion_Tareas,
@@ -70,14 +63,13 @@ export class ExperienciaComponent implements OnInit {
       fecha_Final: this.amodificar.fecha_Final,
       disciplina: this.amodificar.disciplina
     } : {};
-    console.log(dialogoConfig.data);
 
     const dialogo = this.dialog.open(EditexperienciaComponent, dialogoConfig);
 
     dialogo.afterClosed().subscribe(experiencia => {
       experiencia.disciplina = this.disciplinaActual;
       if (experiencia.id_experiencia == undefined) {
-        this.experienciaActual.push(experiencia); // Si es una experiencia nueva se agrega al array y se define como 0 para que se cree un id nuevo en el backend.
+        this.experienciaActual.push(experiencia);
         experiencia.id_experiencia = 0;
       }
       if (experiencia.id_experiencia != undefined) {
@@ -85,6 +77,5 @@ export class ExperienciaComponent implements OnInit {
       };
     });
     this.ActualizarMuestra();
-    this.reloadComponent();
   }
 }

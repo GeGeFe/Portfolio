@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AutenticacionService } from '../../servicios/autenticacion.service';
-import { Disciplina, iFormacion } from '../../interfaces';
-import { BaseDeDatosService } from 'src/app/servicios/base-de-datos.service';
-import { Formacion } from './formacion';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { BaseDeDatosService } from 'src/app/servicios/base-de-datos.service';
+import { Disciplina, Formacion } from '../../interfaces';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditformacionComponent } from './editformacion/editformacion.component';
 
 @Component({
@@ -14,15 +13,13 @@ import { EditformacionComponent } from './editformacion/editformacion.component'
 })
 export class FormacionComponent implements OnInit {
   @Input() disciplinaActual!: Disciplina;
-  @Input() formacionActual!: iFormacion[];
-  formacionMostrar!: iFormacion[];
+  @Input() formacionActual!: Formacion[];
+  formacionMostrar!: Formacion[];
   public amodificar!: Formacion;
 
-  constructor(public autServicio: AutenticacionService, public bdService: BaseDeDatosService, private ruta: Router, public dialog: MatDialog) {
-  }
+  constructor(public autServicio: AutenticacionService, public bdService: BaseDeDatosService, private ruta: Router, public dialog: MatDialog) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   reloadComponent(): void {
     let currentUrl = this.ruta.url;
@@ -31,19 +28,17 @@ export class FormacionComponent implements OnInit {
     this.ruta.navigate([currentUrl]);
   }
 
-  ngOnChanges(): void {
-    this.ActualizarMuestra();
-  }
+  ngOnChanges(): void { this.ActualizarMuestra(); }
 
   ActualizarMuestra(): void {
     this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); });
+//    this.reloadComponent();
   }
 
   btnModificar(evento: Event, formacion: Formacion): void {
     this.amodificar = formacion;
     this.abrirDialogo()
     this.ActualizarMuestra();
-    this.reloadComponent();
   }
 
   btnEliminar(evento: Event, formacion: Formacion): void {
@@ -51,23 +46,24 @@ export class FormacionComponent implements OnInit {
       this.bdService.delFormacion(formacion).subscribe();
       this.formacionActual.slice(this.formacionActual.findIndex(x => x == formacion), 1);
       this.ActualizarMuestra();
-      this.reloadComponent();
     }
   }
 
   abrirDialogo(): void {
-    const dialogo = this.dialog.open(EditformacionComponent, {
-      data: (this.amodificar != undefined) ? {
-        id_educacion: this.amodificar.id_educacion,
-        titulo: this.amodificar.titulo,
-        tipo: this.amodificar.tipo,
-        fecha_Inicio: this.amodificar.fecha_Inicio,
-        fecha_Final: this.amodificar.fecha_Final,
-        logo: this.amodificar.logo,
-        institucion: this.amodificar.institucion,
-        disciplina: this.amodificar.disciplina
-      } : {}
-    });
+    const dialogoConfig = new MatDialogConfig();
+    dialogoConfig.disableClose = true;
+    dialogoConfig.autoFocus=true;
+    dialogoConfig.data= (this.amodificar != undefined) ? {
+      id_educacion: this.amodificar.id_educacion,
+      titulo: this.amodificar.titulo,
+      tipo: this.amodificar.tipo,
+      fecha_Inicio: this.amodificar.fecha_Inicio,
+      fecha_Final: this.amodificar.fecha_Final,
+      logo: this.amodificar.logo,
+      institucion: this.amodificar.institucion,
+      disciplina: this.amodificar.disciplina
+    } : {};
+    const dialogo = this.dialog.open(EditformacionComponent, dialogoConfig);
 
     dialogo.afterClosed().subscribe(formacion => {
       formacion.disciplina = this.disciplinaActual;
@@ -79,8 +75,6 @@ export class FormacionComponent implements OnInit {
         this.bdService.setFormacion(formacion).subscribe();
       };
     });
-
     this.reloadComponent();
-    this.ActualizarMuestra();
   }
 }

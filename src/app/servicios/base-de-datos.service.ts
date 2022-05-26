@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //import { environment } from 'src/environments/environment';
 import { Experiencia } from '../interfaces';
-import { iFormacion } from '../interfaces';
+import { Formacion } from '../interfaces';
 import { Proyecto } from '../interfaces';
 import { map, Observable } from 'rxjs';
 
@@ -16,11 +16,11 @@ export class BaseDeDatosService {
 
   getDisciplinas() { return this.http.get(`${this.url}disciplina/traer`); }
 
-  delFormacion(formacion: iFormacion) { return this.http.delete(`${this.url}formacion/borrar/` + formacion.id_educacion); }
+  delFormacion(formacion: Formacion) { return this.http.delete(`${this.url}formacion/borrar/` + formacion.id_educacion); }
 
   delExperiencia(experiencia: Experiencia) { return this.http.delete(`${this.url}experiencia/borrar/` + experiencia.id_experiencia); }
 
-  setFormacion(formacion: iFormacion): Observable<any> {
+  setFormacion(formacion: Formacion): Observable<any> {
     let headers = new HttpHeaders({
       'Access-Control-Allow-Headers': 'Content-Type',
       'Content-Type': 'application/json',

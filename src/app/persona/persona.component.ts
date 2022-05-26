@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { BaseDeDatosService } from '../servicios/base-de-datos.service';
 import { AutenticacionService } from '../servicios/autenticacion.service';
-import { Disciplina, Experiencia, iFormacion, Persona, Proyecto } from '../interfaces';
+import { Disciplina, Experiencia, Formacion, Persona, Proyecto } from '../interfaces';
 
 @Component({
   selector: 'app-persona',
@@ -10,7 +10,7 @@ import { Disciplina, Experiencia, iFormacion, Persona, Proyecto } from '../inter
 })
 export class PersonaComponent implements OnInit {
   public personaActual!: Persona;
-  public formacionActual: iFormacion[] = [];
+  public formacionActual: Formacion[] = [];
   public experienciaActual: Experiencia[]=[];
   public proyectosActual: Proyecto[]=[];
   public disciplinas: Disciplina[] = [];
