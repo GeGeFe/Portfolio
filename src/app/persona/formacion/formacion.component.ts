@@ -37,8 +37,6 @@ export class FormacionComponent implements OnInit {
 
   ActualizarMuestra(): void {
     this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); });
-    console.log("formacionActual: " + JSON.stringify(this.formacionActual));
-    console.log("formacionMostrar: " + JSON.stringify(this.formacionMostrar));
   }
 
   btnModificar(evento: Event, formacion: Formacion): void {
@@ -58,7 +56,7 @@ export class FormacionComponent implements OnInit {
   }
 
   abrirDialogo(): void {
-    const dialogo1 = this.dialog.open(EditformacionComponent, {
+    const dialogo = this.dialog.open(EditformacionComponent, {
       data: (this.amodificar != undefined) ? {
         id_educacion: this.amodificar.id_educacion,
         titulo: this.amodificar.titulo,
@@ -71,7 +69,7 @@ export class FormacionComponent implements OnInit {
       } : {}
     });
 
-    dialogo1.afterClosed().subscribe(formacion => {
+    dialogo.afterClosed().subscribe(formacion => {
       formacion.disciplina = this.disciplinaActual;
       if (formacion.id_educacion == undefined) {
         this.formacionActual.push(formacion);
@@ -81,6 +79,7 @@ export class FormacionComponent implements OnInit {
         this.bdService.setFormacion(formacion).subscribe();
       };
     });
+
     this.reloadComponent();
     this.ActualizarMuestra();
   }

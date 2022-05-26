@@ -1,14 +1,13 @@
 <h1 mat-dialog-title>Formacion</h1>
-<div mat-dialog-content>
-    <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+<mat-dialog-content>
+    <div >
         <mat-form-field>
-            <input matInput [(ngModel)]="data.titulo" type="texto" placeholder="Ingrese el título de la formación">
+            <input matInput [(ngModel)]="data.titulo" type="text" placeholder="Ingrese el título de la formación">
         </mat-form-field>
         <mat-form-field>
-            <mat-select matInput [(ngModel)]="data.tipo" type="texto">
+            <mat-select matInput [(ngModel)]="data.tipo" type="text">
                 <mat-option *ngFor="let tipo of losTipos" value={{tipo}} > {{tipo}} </mat-option>
             </mat-select>
-<!--            <input matInput [(ngModel)]="data.tipo" type="texto" placeholder="Ingrese el tipo de formación"> -->
         </mat-form-field>
         <mat-form-field>
             <input matInput [(ngModel)]="data.logo" type="text"
@@ -26,8 +25,8 @@
             <input matInput [(ngModel)]="data.fecha_Final" type="date" placeholder="Ingrese la fecha en la que terminó">
         </mat-form-field>
     </div>
-</div>
-<div mat-dialog-actions>
+</mat-dialog-content>
+<mat-dialog-actions>
     <button mat-button (click)="cancelar()">Cancelar</button>
     <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Confirmar</button>
-</div>
+</mat-dialog-actions>

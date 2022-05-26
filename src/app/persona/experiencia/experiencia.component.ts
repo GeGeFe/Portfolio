@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Disciplina, Experiencia } from 'src/app/interfaces';
 import { AutenticacionService } from 'src/app/servicios/autenticacion.service';
@@ -53,23 +55,29 @@ export class ExperienciaComponent implements OnInit {
   }
 
   abrirDialogo(): void {
-    const dialogo1 = this.dialog.open(EditexperienciaComponent, {
-      data: (this.amodificar != undefined) ? {
-        id_experiencia: this.amodificar.id_experiencia,
-        puesto: this.amodificar.puesto,
-        descripcion_Tareas: this.amodificar.descripcion_Tareas,
-        nombre_Empresa: this.amodificar.nombre_Empresa,
-        logo_Empresa: this.amodificar.logo_Empresa,
-        fecha_Inicio: this.amodificar.fecha_Inicio,
-        fecha_Final: this.amodificar.fecha_Final,
-        disciplina: this.amodificar.disciplina
-      } : {}
-    });
+    const dialogoConfig = new MatDialogConfig();
+    
+    dialogoConfig.disableClose= true;
+    dialogoConfig.autoFocus=true;
+    console.log(this.amodificar.id_experiencia);
+    dialogoConfig.data=(this.amodificar != undefined) ? {
+      id_experiencia: this.amodificar.id_experiencia,
+      puesto: this.amodificar.puesto,
+      descripcion_Tareas: this.amodificar.descripcion_Tareas,
+      nombre_Empresa: this.amodificar.nombre_Empresa,
+      logo_Empresa: this.amodificar.logo_Empresa,
+      fecha_Inicio: this.amodificar.fecha_Inicio,
+      fecha_Final: this.amodificar.fecha_Final,
+      disciplina: this.amodificar.disciplina
+    } : {};
+    console.log(dialogoConfig.data);
 
-    dialogo1.afterClosed().subscribe(experiencia => {
+    const dialogo = this.dialog.open(EditexperienciaComponent, dialogoConfig);
+
+    dialogo.afterClosed().subscribe(experiencia => {
       experiencia.disciplina = this.disciplinaActual;
       if (experiencia.id_experiencia == undefined) {
-        this.experienciaActual.push(experiencia);
+        this.experienciaActual.push(experiencia); // Si es una experiencia nueva se agrega al array y se define como 0 para que se cree un id nuevo en el backend.
         experiencia.id_experiencia = 0;
       }
       if (experiencia.id_experiencia != undefined) {

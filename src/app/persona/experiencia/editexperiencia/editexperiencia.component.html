@@ -1,30 +1,37 @@
 <h1 mat-dialog-title>Eperiencia</h1>
-<div mat-dialog-content>
-    <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+<form [formGroup]="formulario">
+    <mat-dialog-content>
         <mat-form-field>
-            <input matInput [(ngModel)]="data.puesto" type="texto" placeholder="Ingrese el puesto">
+            <mat-label> Puesto </mat-label>
+            <input matInput formControlName="puesto" type="text" placeholder="Ingrese el puesto">
         </mat-form-field>
         <mat-form-field>
-            <input matInput [(ngModel)]="data.descripcion_Tareas" type="texto"
+            <mat-label> Tareas </mat-label>
+            <input matInput formControlName="descripcion_Tareas" type="text"
                 placeholder="Ingrese las tareas que realiza">
         </mat-form-field>
         <mat-form-field>
-            <input matInput [(ngModel)]="data.logo_Empresa" type="text" placeholder="Ingrese el logo de la empresa">
-        </mat-form-field>
-
-        <mat-form-field>
-            <input matInput [(ngModel)]="data.nombre_Empresa" type="text" placeholder="Ingrese el nombre de la empresa">
+            <mat-label> Logo de la empresa </mat-label>
+            <input matInput formControlName="logo_Empresa" type="text" placeholder="Ingrese el logo de la empresa">
         </mat-form-field>
         <mat-form-field>
-            <input matInput [(ngModel)]="data.fecha_Inicio" type="date"
-                placeholder="Ingrese la fecha en la que comenzó">
+            <mat-label> Nombre de la empresa </mat-label>
+            <input matInput formControlName="nombre_Empresa" type="text" placeholder="Ingrese el nombre de la empresa">
         </mat-form-field>
         <mat-form-field>
-            <input matInput [(ngModel)]="data.fecha_Final" type="date" placeholder="Ingrese la fecha en la que terminó">
+            <mat-label> Fecha de inicio </mat-label>
+            <input matInput formControlName="fecha_Inicio" type="date" placeholder="Ingrese la fecha en la que comenzó">
         </mat-form-field>
-    </div>
-</div>
-<div mat-dialog-actions>
-    <button mat-button (click)="cancelar()">Cancelar</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Confirmar</button>
-</div>
+        <mat-form-field>
+            <mat-label> Fecha de finalización </mat-label>
+            <input matInput formControlName="fecha_Final" type="date" placeholder="Ingrese la fecha en la que terminó">
+        </mat-form-field>
+        <mat-form-field>
+            <input hidden="true" matInput formControlName="id_experiencia" type="number">
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="cancelar()">Cancelar</button>
+        <button mat-button (click)="aceptar()" [disabled]="!formulario.valid">Confirmar</button>
+    </mat-dialog-actions>
+</form>
