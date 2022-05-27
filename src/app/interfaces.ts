@@ -27,12 +27,13 @@ export interface Disciplina {
 }
 
 export interface Proyecto {
-    idProyecto: number;
+    id_proyecto: number;
     nombre: string;
-    fecha: Date;
+    fecha_Publicacion: Date;
     descripcion: string;
     enlace: string;
-    disciplina: Disciplina
+    disciplina: Disciplina;
+    imagenes: Imagen[];
 }
 
 export interface Experiencia {
@@ -50,4 +51,11 @@ export interface Habilidad {
     id_habilidad: number;
     nombre: string;
     porcentaje: number;
+}
+
+export interface Imagen {
+    id_imagen: number;
+    enlace: string;
+    posicion: number;
+    titulo: string;
 }

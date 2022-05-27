@@ -28,32 +28,27 @@ export class FormacionComponent implements OnInit {
     this.ruta.navigate([currentUrl]);
   }
 
-  ngOnChanges(): void { this.ActualizarMuestra(); }
-
-  ActualizarMuestra(): void {
-    this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); });
-//    this.reloadComponent();
-  }
+  ngOnChanges(): void { this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }); }
 
   btnModificar(evento: Event, formacion: Formacion): void {
     this.amodificar = formacion;
     this.abrirDialogo()
-    this.ActualizarMuestra();
   }
 
   btnEliminar(evento: Event, formacion: Formacion): void {
     if (confirm("¿Realmente quiere borrar esta formación?")) {
-      this.bdService.delFormacion(formacion).subscribe();
+      this.bdService.delFormacion(formacion).subscribe(f => {
+        this.reloadComponent();
+      });
       this.formacionActual.slice(this.formacionActual.findIndex(x => x == formacion), 1);
-      this.ActualizarMuestra();
     }
   }
 
   abrirDialogo(): void {
     const dialogoConfig = new MatDialogConfig();
     dialogoConfig.disableClose = true;
-    dialogoConfig.autoFocus=true;
-    dialogoConfig.data= (this.amodificar != undefined) ? {
+    dialogoConfig.autoFocus = true;
+    dialogoConfig.data = (this.amodificar != undefined) ? {
       id_educacion: this.amodificar.id_educacion,
       titulo: this.amodificar.titulo,
       tipo: this.amodificar.tipo,
@@ -74,7 +69,7 @@ export class FormacionComponent implements OnInit {
       if (formacion.id_educacion != undefined) {
         this.bdService.setFormacion(formacion).subscribe();
       };
+      this.reloadComponent();
     });
-    this.reloadComponent();
   }
 }

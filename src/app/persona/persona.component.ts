@@ -11,8 +11,8 @@ import { Disciplina, Experiencia, Formacion, Persona, Proyecto } from '../interf
 export class PersonaComponent implements OnInit {
   public personaActual!: Persona;
   public formacionActual: Formacion[] = [];
-  public experienciaActual: Experiencia[]=[];
-  public proyectosActual: Proyecto[]=[];
+  public experienciaActual: Experiencia[] = [];
+  public proyectosActual: Proyecto[] = [];
   public disciplinas: Disciplina[] = [];
   public disciplinaActual!: Disciplina;
   srcResult: any;
@@ -33,26 +33,27 @@ export class PersonaComponent implements OnInit {
         Acerca_de: JSON.parse(JSON.stringify(datos)).acerca_de
       }
       this.formacionActual = JSON.parse(JSON.stringify(datos)).formacion;
-      this.experienciaActual= JSON.parse(JSON.stringify(datos)).experiencia;
+      this.experienciaActual = JSON.parse(JSON.stringify(datos)).experiencia;
+      this.proyectosActual = JSON.parse(JSON.stringify(datos)).proyectos;
     });
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))
     });
 
-    // *** Solo para proba ***
-    this.proyectosActual=this.bdService.getProyectos(1);
+    // *** Solo para probar ***
+    //   this.proyectosActual=this.bdService.getProyectos(1);
   }
 
   onFileSelected() {
     const inputNode: any = document.querySelector('#file');
-  
+
     if (typeof (FileReader) !== 'undefined') {
       const reader = new FileReader();
-  
+
       reader.onload = (e: any) => {
         this.srcResult = e.target.result;
       };
-  
+
       reader.readAsArrayBuffer(inputNode.files[0]);
     }
   }

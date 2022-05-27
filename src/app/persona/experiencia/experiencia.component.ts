@@ -28,24 +28,19 @@ export class ExperienciaComponent implements OnInit {
     this.ruta.navigate([currentUrl]);
   }
 
-  ngOnChanges(): void { this.ActualizarMuestra(); }
-
-  ActualizarMuestra(): void {
-    this.experienciaMostrar = this.experienciaActual.filter(e => { return (e.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); });
-  //  this.reloadComponent();
-  }
+  ngOnChanges(): void { this.experienciaMostrar = this.experienciaActual.filter(e => { return (e.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }); }
 
   btnModificar(evento: Event, experiencia: Experiencia): void {
     this.amodificar = experiencia;
     this.abrirDialogo()
-    this.ActualizarMuestra();
   }
 
   btnEliminar(evento: Event, experiencia: Experiencia): void {
     if (confirm("¿Realmente quiere borrar esta experiencia?")) {
-      this.bdService.delExperiencia(experiencia).subscribe();
+      this.bdService.delExperiencia(experiencia).subscribe(e => {
+        this.reloadComponent();
+      });
       this.experienciaActual.slice(this.experienciaActual.findIndex(x => x == experiencia), 1);
-      this.ActualizarMuestra();
     }
   }
 
@@ -75,7 +70,7 @@ export class ExperienciaComponent implements OnInit {
       if (experiencia.id_experiencia != undefined) {
         this.bdService.setExperiencia(experiencia).subscribe();
       };
+      this.reloadComponent();
     });
-    this.ActualizarMuestra();
   }
 }

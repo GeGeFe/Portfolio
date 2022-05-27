@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Proyecto</h1>
+<form [formGroup]="formulario">
+    <mat-dialog-content>
+        <mat-form-field>
+            <mat-label> Nombre </mat-label>
+            <input matInput formControlName="nombre" type="text" placeholder="Ingrese el nombre del proyecto">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label> Descripción </mat-label>
+            <input matInput formControlName="descripcion" type="text"
+                placeholder="Ingrese la descripción del proyecto">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label> Enlace al proyecto </mat-label>
+            <input matInput formControlName="enlace" type="text"
+                placeholder="Ingrese un enlace al proyecto">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label> Fecha de publicación </mat-label>
+            <input matInput formControlName="fecha_Publicacion" type="date" placeholder="Ingrese la fecha en la que se publicó">
+        </mat-form-field>
+        <mat-form-field>
+            <input hidden="true" matInput formControlName="id_proyecto" type="number">
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="cancelar()">Cancelar</button>
+        <button mat-button (click)="aceptar()" [disabled]="!formulario.valid">Confirmar</button>
+    </mat-dialog-actions>
+</form>

@@ -29,6 +29,9 @@
             <mat-label> Fecha de finalización </mat-label>
             <input matInput formControlName="fecha_Final" type="date" placeholder="Ingrese la fecha en la que terminó">
         </mat-form-field>
+        <mat-form-field>
+            <input hidden="true" matInput formControlName="id_formacion" type="number">
+        </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
         <button mat-button (click)="cancelar()">Cancelar</button>

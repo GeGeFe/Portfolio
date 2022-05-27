@@ -4,17 +4,28 @@
     </mat-card-header>
     <mat-card-content>
 
-        <mat-card class="experiencia mat-elevation-z18" *ngFor="let proyecto of proyectosMostrar">
+        <mat-card class="proyecto mat-elevation-z18" *ngFor="let proyecto of proyectosMostrar">
             <mat-card-header>
                 <mat-card-title>{{proyecto.nombre}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                Descripción: {{proyecto.descripcion}}<br>
-                Enlace: <a href="{{proyecto.enlace}}"> {{proyecto.enlace}}</a><br>
-                <div style="text-align: right;">
-                    {{proyecto.fecha|date:"dd/MM/yyyy"}}<br>
+                <div style="text-align: center">
+                    Descripción: {{proyecto.descripcion}}<br>
+                    <a href="{{proyecto.enlace}}" target="_blank"> Enlace al proyecto </a><br>
                 </div>
+                <div style="text-align: right;">
+                    {{proyecto.fecha_Publicacion|date:"dd/MM/yyyy"}}<br>
+                </div>
+                <app-imagenes [imagenes]="proyecto.imagenes"></app-imagenes>
+                <mat-card-actions *ngIf="autServicio.logueado()">
+                    <button mat-raised-button (click)="btnModificar($event, proyecto)"> Editar <mat-icon>border_color
+                        </mat-icon></button>
+                    <button mat-raised-button (click)="btnEliminar($event, proyecto)"> Eliminar <mat-icon>delete
+                        </mat-icon></button>
+                </mat-card-actions>
             </mat-card-content>
         </mat-card>
+        <button mat-raised-button *ngIf="autServicio.logueado()" (click)="abrirDialogo()">Agregar proyecto<mat-icon>
+                add</mat-icon></button>
     </mat-card-content>
 </mat-card>

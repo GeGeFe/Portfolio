@@ -23,6 +23,8 @@ import { EditformacionComponent } from './persona/formacion/editformacion/editfo
 import { EditexperienciaComponent } from './persona/experiencia/editexperiencia/editexperiencia.component';
 import { HabilidadesComponent } from './persona/habilidades/habilidades.component';
 import { TortaComponent } from './persona/habilidades/torta/torta.component';
+import { EditproyectoComponent } from './persona/proyectos/editproyecto/editproyecto.component';
+import { ImagenesComponent } from './persona/proyectos/imagenes/imagenes.component';
 
 
 
@@ -40,7 +42,9 @@ import { TortaComponent } from './persona/habilidades/torta/torta.component';
     EditformacionComponent,
     EditexperienciaComponent,
     HabilidadesComponent,
-    TortaComponent
+    TortaComponent,
+    EditproyectoComponent,
+    ImagenesComponent
   ],
   imports: [
     BrowserModule,
