@@ -1,7 +1,5 @@
-<mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile>{{imagenes[1]}}</mat-grid-tile>
-    <mat-grid-tile>{{imagenes[2]}}</mat-grid-tile>
-    <mat-grid-tile>{{imagenes[3]}}</mat-grid-tile>
-    <mat-grid-tile>{{imagenes[4]}}</mat-grid-tile>
+<mat-grid-list cols="3" rowHeight="{{imagenes.length}}:1">
+    <mat-grid-tile *ngFor="let imagen of imagenes">
+        <img src="{{imagen.enlace}}" />
+    </mat-grid-tile>
 </mat-grid-list>
-  
