@@ -1,5 +1,23 @@
-<mat-grid-list cols="3" rowHeight="{{imagenes.length}}:1">
+<mat-grid-list cols="3" rowHeight="4:3">
     <mat-grid-tile *ngFor="let imagen of imagenes">
-        <img src="{{imagen.enlace}}" />
+
+        <mat-grid-tile-header>
+            {{imagen.titulo}}
+        </mat-grid-tile-header>
+        <img src="{{imagen.enlace}}" title="{{imagen.titulo}}" alt="{{imagen.titulo}}" />
+        <mat-grid-tile-footer *ngIf="autServicio.logueado()">
+
+            <button mat-raised-button (click)="btnModificar($event, imagen)">
+                <mat-icon>border_color</mat-icon>
+            </button>
+            <button mat-raised-button (click)="btnEliminar($event, imagen)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-grid-tile-footer>
+
     </mat-grid-tile>
 </mat-grid-list>
+<br>
+<button mat-raised-button *ngIf="autServicio.logueado()" (click)="abrirDialogo()">Agregar Imagen<mat-icon>
+        add</mat-icon>
+</button>

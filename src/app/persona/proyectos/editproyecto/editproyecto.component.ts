@@ -25,4 +25,5 @@ export class EditproyectoComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  cancelar() { this.dialogRef.close(); }}
+  cancelar() { this.dialogRef.close(); }
+}

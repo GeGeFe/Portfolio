@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Imagen</h1>
+<form [formGroup]="formulario">
+    <mat-dialog-content>
+        <mat-form-field>
+            <mat-label> Titulo </mat-label>
+            <input matInput formControlName="titulo" type="text" placeholder="Ingrese el título de la imagen">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label> Enlace al proyecto </mat-label>
+            <input matInput formControlName="enlace" type="text"
+                placeholder="Ingrese un enlace al proyecto">
+        </mat-form-field>
+        <mat-form-field>
+            <input hidden="true" matInput formControlName="posicion" type="number">
+        </mat-form-field>
+        <mat-form-field>
+            <input hidden="true" matInput formControlName="id_imagen" type="number">
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="cancelar()">Cancelar</button>
+        <button mat-button (click)="aceptar()" [disabled]="!formulario.valid">Confirmar</button>
+    </mat-dialog-actions>
+</form>

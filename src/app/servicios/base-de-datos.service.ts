@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //import { environment } from 'src/environments/environment';
-import { Experiencia } from '../interfaces';
+import { Experiencia, Imagen } from '../interfaces';
 import { Formacion } from '../interfaces';
 import { Proyecto } from '../interfaces';
 import { map, Observable } from 'rxjs';
@@ -28,6 +28,8 @@ export class BaseDeDatosService {
 
   delProyecto(proyecto: Proyecto) { return this.http.delete(`${this.url}proyecto/borrar/` + proyecto.id_proyecto); }
 
+  delImagen(imagen: Imagen) { return this.http.delete(`${this.url}imagen/borrar/` + imagen.id_imagen); }
+
   setFormacion(formacion: Formacion): Observable<any> {
     let options = { 'headers': this.headers };
     return this.http.post(`${this.url}personas/1/agregarFormacion`, { // Cambiar luego el 1 por personaActual
@@ -43,6 +45,19 @@ export class BaseDeDatosService {
       , options).pipe(map(datos => { return datos; })
       );
   }
+
+  setImagen(imagen: Imagen, id_Proyecto: number): Observable<any> {
+    let options = { 'headers': this.headers };
+    return this.http.post(`${this.url}proyecto/${id_Proyecto}/agregarImagen`, {
+      id_imagen: imagen.id_imagen,
+      enlace: imagen.enlace,
+      posicion: imagen.posicion,
+      titulo: imagen.titulo,
+    }
+      , options).pipe(map(datos => { return datos; })
+      );
+  }
+
 
   setExperiencia(experiencia: Experiencia): Observable<any> {
     let options = { 'headers': this.headers };
@@ -73,26 +88,4 @@ export class BaseDeDatosService {
       , options).pipe(map(datos => { return datos; })
       );
   }
-  /*
-  getProyectos(idPersona: number): Proyecto[] {
-    return [
-      {
-        id_proyecto: 0,
-        nombre: "Este mismo proyecto",
-        fecha_Publicacion: new Date("02/01/2022"),
-        descripcion: "Fue un quilombo pero quedó bonito. ¿No?",
-        enlace: "string;",
-        disciplina: { id_disciplina: 1, nombre: "Computación" }
-      },
-      {
-        id_proyecto: 1,
-        nombre: "Un proyecyo inventado",
-        fecha_Publicacion: new Date("03/01/2022"),
-        descripcion: "Piripi pipipi",
-        enlace: "Por ahí en interné. Busquelón",
-        disciplina: { id_disciplina: 1, nombre: "Computación" }
-      }
-    ];
-  }
-  */
 }

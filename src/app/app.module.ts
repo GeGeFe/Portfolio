@@ -25,6 +25,7 @@ import { HabilidadesComponent } from './persona/habilidades/habilidades.componen
 import { TortaComponent } from './persona/habilidades/torta/torta.component';
 import { EditproyectoComponent } from './persona/proyectos/editproyecto/editproyecto.component';
 import { ImagenesComponent } from './persona/proyectos/imagenes/imagenes.component';
+import { EditimagenComponent } from './persona/proyectos/imagenes/editimagen/editimagen.component';
 
 
 
@@ -44,7 +45,8 @@ import { ImagenesComponent } from './persona/proyectos/imagenes/imagenes.compone
     HabilidadesComponent,
     TortaComponent,
     EditproyectoComponent,
-    ImagenesComponent
+    ImagenesComponent,
+    EditimagenComponent
   ],
   imports: [
     BrowserModule,
