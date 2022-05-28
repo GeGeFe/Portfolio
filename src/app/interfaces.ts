@@ -1,4 +1,5 @@
 import { TiposFormacion } from "./persona/formacion/tiposformacion";
+import { TiposHabilidad } from "./persona/habilidades/tiposhabilidad";
 
 export interface Persona {
     idPersona: number;
@@ -51,6 +52,7 @@ export interface Habilidad {
     id_habilidad: number;
     nombre: string;
     porcentaje: number;
+    tipo: TiposHabilidad
 }
 
 export interface Imagen {

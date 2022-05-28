@@ -10,8 +10,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar'; // Para las habilidades y no tener que importar otra libreria para las tortas
+import { MatSliderModule } from '@angular/material/slider';  // idem que MatProgresssBarModule
 
 @NgModule({
     imports: [
@@ -27,7 +29,9 @@ import {MatTabsModule} from '@angular/material/tabs';
         MatNativeDateModule,
         MatDialogModule,
         MatIconModule,
-        MatTabsModule
+        MatTabsModule,
+        MatProgressBarModule,
+        MatSliderModule
     ],
     exports: [
         MatGridListModule,
@@ -42,7 +46,9 @@ import {MatTabsModule} from '@angular/material/tabs';
         MatNativeDateModule,
         MatDialogModule,
         MatIconModule,
-        MatTabsModule
+        MatTabsModule,
+        MatProgressBarModule,
+        MatSliderModule
     ]
 })
 export class MaterialModule { };

@@ -21,15 +21,17 @@
                 </div>
                 <app-imagenes [imagenes]="proyecto.imagenes" [proyecto]="proyecto"></app-imagenes>
                 <mat-card-actions *ngIf="autServicio.logueado()">
-                    <button mat-raised-button (click)="btnModificar($event, proyecto)"> Editar <mat-icon>border_color
-                        </mat-icon></button>
-                    <button mat-raised-button (click)="btnEliminar($event, proyecto)"> Eliminar <mat-icon>delete
-                        </mat-icon></button>
+                    <button mat-raised-button (click)="btnModificar($event, proyecto)">
+                        Editar proyecto<mat-icon>border_color</mat-icon>
+                    </button>
+                    <button mat-raised-button (click)="btnEliminar($event, proyecto)">
+                        Eliminar proyecto<mat-icon>delete</mat-icon>
+                    </button>
                 </mat-card-actions>
             </mat-card-content>
         </mat-card>
-        <button mat-raised-button *ngIf="autServicio.logueado()" (click)="abrirDialogo()">Agregar proyecto<mat-icon>
-                add</mat-icon>
+        <button mat-raised-button *ngIf="autServicio.logueado()" (click)="abrirDialogo()">
+            Agregar proyecto <mat-icon>add</mat-icon>
         </button>
     </mat-card-content>
 </mat-card>

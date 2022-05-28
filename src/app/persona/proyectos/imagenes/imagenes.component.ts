@@ -42,7 +42,7 @@ export class ImagenesComponent implements OnInit {
   }
 
   btnEliminar(evento: Event, imagen: Imagen): void {
-    if (confirm("¿Realmente quiere borrar este proyecto?")) {
+    if (confirm("¿Realmente quiere borrar esta imagen?")) {
       this.bdService.delImagen(imagen).subscribe(p => {
         this.reloadComponent();
       });

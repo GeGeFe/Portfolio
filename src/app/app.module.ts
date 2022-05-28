@@ -22,10 +22,10 @@ import { MaterialModule } from './material.module';
 import { EditformacionComponent } from './persona/formacion/editformacion/editformacion.component';
 import { EditexperienciaComponent } from './persona/experiencia/editexperiencia/editexperiencia.component';
 import { HabilidadesComponent } from './persona/habilidades/habilidades.component';
-import { TortaComponent } from './persona/habilidades/torta/torta.component';
 import { EditproyectoComponent } from './persona/proyectos/editproyecto/editproyecto.component';
 import { ImagenesComponent } from './persona/proyectos/imagenes/imagenes.component';
 import { EditimagenComponent } from './persona/proyectos/imagenes/editimagen/editimagen.component';
+import { EdithabilidadComponent } from './persona/habilidades/edithabilidad/edithabilidad.component';
 
 
 
@@ -43,10 +43,10 @@ import { EditimagenComponent } from './persona/proyectos/imagenes/editimagen/edi
     EditformacionComponent,
     EditexperienciaComponent,
     HabilidadesComponent,
-    TortaComponent,
     EditproyectoComponent,
     ImagenesComponent,
-    EditimagenComponent
+    EditimagenComponent,
+    EdithabilidadComponent
   ],
   imports: [
     BrowserModule,

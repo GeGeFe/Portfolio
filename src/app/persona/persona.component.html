@@ -26,26 +26,6 @@
                 <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplina"></app-formacion>
             </mat-tab>
         </mat-tab-group>
-
-        <!--        <div style="text-align: right;">
-            <mat-form-field appearance="fill">
-                <mat-label>Disciplina</mat-label>
-                <mat-select [(value)]="disciplinaActual">
-                    <mat-option *ngFor="let disciplina of disciplinas" [value]="disciplina">
-                        {{disciplina.nombre}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        -->
     </mat-card>
-
-    <!--
-    <div *ngIf="disciplinaActual!=undefined">
-        <app-experiencia [experienciaActual]="experienciaActual" [disciplinaActual]="disciplinaActual"></app-experiencia>
-        <app-proyectos [proyectosActual]="proyectosActual" [disciplinaActual]="disciplinaActual"></app-proyectos>
-        <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplinaActual"></app-formacion>
-    </div>
--->
-    <app-habilidades></app-habilidades>
+    <app-habilidades [habilidadesActual]="habilidadesActual"></app-habilidades>
 </div>

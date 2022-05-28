@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //import { environment } from 'src/environments/environment';
-import { Experiencia, Imagen } from '../interfaces';
+import { Experiencia, Habilidad, Imagen } from '../interfaces';
 import { Formacion } from '../interfaces';
 import { Proyecto } from '../interfaces';
 import { map, Observable } from 'rxjs';
@@ -29,6 +29,8 @@ export class BaseDeDatosService {
   delProyecto(proyecto: Proyecto) { return this.http.delete(`${this.url}proyecto/borrar/` + proyecto.id_proyecto); }
 
   delImagen(imagen: Imagen) { return this.http.delete(`${this.url}imagen/borrar/` + imagen.id_imagen); }
+
+  delHabilidad(habilidad: Habilidad) { return this.http.delete(`${this.url}habilidad/borrar/` + habilidad.id_habilidad); }
 
   setFormacion(formacion: Formacion): Observable<any> {
     let options = { 'headers': this.headers };
@@ -58,7 +60,6 @@ export class BaseDeDatosService {
       );
   }
 
-
   setExperiencia(experiencia: Experiencia): Observable<any> {
     let options = { 'headers': this.headers };
     return this.http.post(`${this.url}personas/1/agregarExperiencia`, { // Cambiar luego el 1 por personaActual
@@ -84,6 +85,18 @@ export class BaseDeDatosService {
       fecha_Publicacion: proyecto.fecha_Publicacion,
       enlace: proyecto.enlace,
       disciplina: proyecto.disciplina
+    }
+      , options).pipe(map(datos => { return datos; })
+      );
+  }
+
+  setHabilidad(habilidad: Habilidad): Observable<any> {
+    let options = { 'headers': this.headers };
+    return this.http.post(`${this.url}personas/1/agregarHabilidad`, { // Cambiar luego el 1 por personaActual
+      id_habilidad: habilidad.id_habilidad,
+      nombre: habilidad.nombre,
+      porcentaje: habilidad.porcentaje,
+      tipo: habilidad.tipo
     }
       , options).pipe(map(datos => { return datos; })
       );

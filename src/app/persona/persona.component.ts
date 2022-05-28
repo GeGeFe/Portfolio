@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { BaseDeDatosService } from '../servicios/base-de-datos.service';
 import { AutenticacionService } from '../servicios/autenticacion.service';
-import { Disciplina, Experiencia, Formacion, Persona, Proyecto } from '../interfaces';
+import { Disciplina, Experiencia, Formacion, Habilidad, Persona, Proyecto } from '../interfaces';
 
 @Component({
   selector: 'app-persona',
@@ -14,6 +14,7 @@ export class PersonaComponent implements OnInit {
   public experienciaActual: Experiencia[] = [];
   public proyectosActual: Proyecto[] = [];
   public disciplinas: Disciplina[] = [];
+  public habilidadesActual: Habilidad[] = [];
   public disciplinaActual!: Disciplina;
   srcResult: any;
 
@@ -35,6 +36,7 @@ export class PersonaComponent implements OnInit {
       this.formacionActual = JSON.parse(JSON.stringify(datos)).formacion;
       this.experienciaActual = JSON.parse(JSON.stringify(datos)).experiencia;
       this.proyectosActual = JSON.parse(JSON.stringify(datos)).proyectos;
+      this.habilidadesActual = JSON.parse(JSON.stringify(datos)).habilidades;
     });
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))

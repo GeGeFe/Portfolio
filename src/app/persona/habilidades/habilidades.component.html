@@ -6,10 +6,22 @@
 
         <mat-card class="experiencia mat-elevation-z18" *ngFor="let habilidad of habilidadesMostrar">
             <mat-card-header>
-                <mat-card-title>{{ habilidad.nombre}}</mat-card-title>
+                <mat-card-title>{{habilidad.nombre}} - {{habilidad.tipo}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
+                <mat-progress-bar mode="determinate" value="{{habilidad.porcentaje}}"></mat-progress-bar>
             </mat-card-content>
+            <mat-card-actions *ngIf="autServicio.logueado()">
+                <button mat-raised-button (click)="btnModificar($event, habilidad)">
+                    Editar <mat-icon>border_color</mat-icon>
+                </button>
+                <button mat-raised-button (click)="btnEliminar($event, habilidad)">
+                    Eliminar <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
         </mat-card>
+        <button mat-raised-button *ngIf="autServicio.logueado()" (click)="abrirDialogo()">
+            Agregar habilidad <mat-icon>add</mat-icon>
+        </button>
     </mat-card-content>
 </mat-card>

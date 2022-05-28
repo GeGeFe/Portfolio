@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Habilidad</h1>
+<form [formGroup]="formulario">
+    <mat-dialog-content>
+        <mat-form-field>
+            <mat-label> Nombre </mat-label>
+            <input matInput formControlName="nombre" type="text" placeholder="Ingrese el nombre de la habilidad">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label> Tipo de habilidad </mat-label>
+            <mat-select matInput formControlName="tipo" type="text">
+                <mat-option *ngFor="let tipo of losTipos" value={{tipo}}> {{tipo}} </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label> Porcentaje </mat-label>
+            <input matInput formControlName="porcentaje" type="number" placeholder="Ingrese el porcentaje de la habilidad">
+        </mat-form-field>
+        <mat-form-field>
+            <input hidden="true" matInput formControlName="id_habilidad" type="number">
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="cancelar()">Cancelar</button>
+        <button mat-button (click)="aceptar()" [disabled]="!formulario.valid">Confirmar</button>
+    </mat-dialog-actions>
+</form>
