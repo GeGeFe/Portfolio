@@ -25,7 +25,7 @@ export class EdithabilidadComponent implements OnInit {
       id_habilidad: new FormControl(data.id_habilidad, []),
       nombre: new FormControl(data.nombre, [Validators.required]),
       tipo: new FormControl(data.tipo, [Validators.required]),
-      porcentaje: new FormControl(data.porcentaje, [Validators.required])
+      porcentaje: new FormControl(data.porcentaje, [Validators.required, Validators.min(0), Validators.max(100)])
     });
   }
 
