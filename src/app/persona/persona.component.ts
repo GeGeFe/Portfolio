@@ -1,7 +1,10 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { BaseDeDatosService } from '../servicios/base-de-datos.service';
 import { AutenticacionService } from '../servicios/autenticacion.service';
 import { Disciplina, Experiencia, Formacion, Habilidad, Persona, Proyecto } from '../interfaces';
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { EditpersonaComponent } from './editpersona/editpersona.component';
 
 @Component({
   selector: 'app-persona',
@@ -9,6 +12,7 @@ import { Disciplina, Experiencia, Formacion, Habilidad, Persona, Proyecto } from
   styleUrls: ['./persona.component.css']
 })
 export class PersonaComponent implements OnInit {
+  @Input() id_persona!: number;
   public personaActual!: Persona;
   public formacionActual: Formacion[] = [];
   public experienciaActual: Experiencia[] = [];
@@ -18,32 +22,34 @@ export class PersonaComponent implements OnInit {
   public disciplinaActual!: Disciplina;
   srcResult: any;
 
-  constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService) {
+  constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService, private ruta: Router, public dialog: MatDialog) { }
+
+  reloadComponent(): void {
+    let currentUrl = this.ruta.url;
+    this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.ruta.onSameUrlNavigation = 'reload';
+    this.ruta.navigate([currentUrl]);
   }
 
   ngOnInit(): void {
-    this.bdService.getPersona(1).subscribe((datos: any) => {
-      // ¿Por qué me obliga a hacer chanchadas como esta y no reconoce directamente datos.idperson, etc.?
+    this.bdService.getPersona(this.id_persona).subscribe((datos: any) => {
       this.personaActual = {
-        idPersona: JSON.parse(JSON.stringify(datos)).idpersona,
-        Nombre: JSON.parse(JSON.stringify(datos)).nombre,
-        Apellido: JSON.parse(JSON.stringify(datos)).apellido,
-        Fecha_Nacimiento: JSON.parse(JSON.stringify(datos)).fecha_Nacimiento,
-        Banner: JSON.parse(JSON.stringify(datos)).banner,
-        Avatar: JSON.parse(JSON.stringify(datos)).avatar,
-        Acerca_de: JSON.parse(JSON.stringify(datos)).acerca_de
+        id_persona: datos.id_persona,
+        nombre: datos.nombre,
+        apellido: datos.apellido,
+        fecha_Nacimiento: datos.fecha_Nacimiento,
+        banner: datos.banner,
+        avatar: datos.avatar,
+        acerca_de: datos.acerca_de
       }
-      this.formacionActual = JSON.parse(JSON.stringify(datos)).formacion;
-      this.experienciaActual = JSON.parse(JSON.stringify(datos)).experiencia;
-      this.proyectosActual = JSON.parse(JSON.stringify(datos)).proyectos;
-      this.habilidadesActual = JSON.parse(JSON.stringify(datos)).habilidades;
+      this.formacionActual = datos.formacion;
+      this.experienciaActual = datos.experiencia;
+      this.proyectosActual = datos.proyectos;
+      this.habilidadesActual = datos.habilidades;
     });
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))
     });
-
-    // *** Solo para probar ***
-    //   this.proyectosActual=this.bdService.getProyectos(1);
   }
 
   onFileSelected() {
@@ -58,6 +64,29 @@ export class PersonaComponent implements OnInit {
 
       reader.readAsArrayBuffer(inputNode.files[0]);
     }
+  }
+
+  abrirDialogo(evento: Event): void {
+    const dialogoConfig = new MatDialogConfig();
+    dialogoConfig.disableClose = true;
+    dialogoConfig.autoFocus = true;
+    dialogoConfig.data = {
+      id_persona: this.personaActual.id_persona,
+      nombre: this.personaActual.nombre,
+      apellido: this.personaActual.apellido,
+      fecha_Nacimiento: this.personaActual.fecha_Nacimiento,
+      acerca_de: this.personaActual.acerca_de,
+      avatar: this.personaActual.avatar,
+      banner: this.personaActual.banner
+    };
+    console.log(this.personaActual.id_persona);
+    console.log(JSON.stringify(dialogoConfig.data));
+    const dialogo = this.dialog.open(EditpersonaComponent, dialogoConfig);
+
+    dialogo.afterClosed().subscribe(persona => {
+      this.bdService.setPersona(persona).subscribe();
+      this.reloadComponent();
+    });
   }
 }
 

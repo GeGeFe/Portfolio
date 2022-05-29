@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //import { environment } from 'src/environments/environment';
-import { Experiencia, Habilidad, Imagen } from '../interfaces';
+import { Experiencia, Habilidad, Imagen, Persona } from '../interfaces';
 import { Formacion } from '../interfaces';
 import { Proyecto } from '../interfaces';
 import { map, Observable } from 'rxjs';
@@ -18,7 +18,7 @@ export class BaseDeDatosService {
   });
   constructor(private http: HttpClient) { }
 
-  getPersona(id_Persona: number) { return this.http.get(`${this.url}personas/traer/${id_Persona}`); }
+  getPersona(id_persona: number) { return this.http.get(`${this.url}personas/traer/${id_persona}`); }
 
   getDisciplinas() { return this.http.get(`${this.url}disciplina/traer`); }
 
@@ -63,7 +63,7 @@ export class BaseDeDatosService {
   setExperiencia(experiencia: Experiencia): Observable<any> {
     let options = { 'headers': this.headers };
     return this.http.post(`${this.url}personas/1/agregarExperiencia`, { // Cambiar luego el 1 por personaActual
-      id_proyecto: experiencia.id_experiencia,
+      id_experiencia: experiencia.id_experiencia,
       puesto: experiencia.puesto,
       descripcion_Tareas: experiencia.descripcion_Tareas,
       fecha_Inicio: experiencia.fecha_Inicio,
@@ -97,6 +97,21 @@ export class BaseDeDatosService {
       nombre: habilidad.nombre,
       porcentaje: habilidad.porcentaje,
       tipo: habilidad.tipo
+    }
+      , options).pipe(map(datos => { return datos; })
+      );
+  }
+
+  setPersona(persona: Persona): Observable<any> {
+    let options = { 'headers': this.headers };
+    return this.http.post(`${this.url}personas/editar/${persona.id_persona}`, {
+      id_persona: persona.id_persona,
+      nombre: persona.nombre,
+      apellido: persona.apellido,
+      acerca_de: persona.acerca_de,
+      avatar: persona.avatar,
+      banner: persona.banner,
+      fecha_nacimiento: persona.fecha_Nacimiento,
     }
       , options).pipe(map(datos => { return datos; })
       );

@@ -4,24 +4,24 @@
 <div *ngIf="personaActual!=undefined">
     <mat-card id="card-persona">
         <mat-card-header>
-            <img mat-card-avatar src={{personaActual.Avatar}} />
-            <mat-card-title class="mat-elevation-z8">{{personaActual.Nombre}}, {{personaActual.Apellido}}
+            <img mat-card-avatar src={{personaActual.avatar}} />
+            <mat-card-title class="mat-elevation-z8">{{personaActual.nombre}}, {{personaActual.apellido}}
             </mat-card-title>
-            <mat-card-subtitle>{{personaActual.Fecha_Nacimiento|date:"dd/MM/yyyy"}}</mat-card-subtitle>
+            <mat-card-subtitle>{{personaActual.fecha_Nacimiento|date:"dd/MM/yyyy"}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image class="banner" src={{personaActual.Banner}} alt="Imagen descriptiva">
+        <img mat-card-image class="banner" src={{personaActual.banner}} alt="Imagen descriptiva">
         <mat-card-content>
-            {{personaActual.Acerca_de}}
+            {{personaActual.acerca_de}}
         </mat-card-content>
         <mat-card-actions *ngIf="autServicio.logueado()">
-            <button mat-raised-button> Editar <mat-icon>border_color</mat-icon> </button>
-            <button mat-raised-button> Eliminar <mat-icon>delete</mat-icon></button>
+            <button mat-raised-button (click)="abrirDialogo($event)">
+                Editar <mat-icon>border_color</mat-icon>
+            </button>
         </mat-card-actions>
 
         <mat-tab-group mat-align-tabs="start">
             <mat-tab *ngFor="let disciplina of disciplinas" label="{{disciplina.nombre}}">
-                <app-experiencia [experienciaActual]="experienciaActual" [disciplinaActual]="disciplina">
-                </app-experiencia>
+                <app-experiencia [experienciaActual]="experienciaActual" [disciplinaActual]="disciplina"></app-experiencia>
                 <app-proyectos [proyectosActual]="proyectosActual" [disciplinaActual]="disciplina"></app-proyectos>
                 <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplina"></app-formacion>
             </mat-tab>

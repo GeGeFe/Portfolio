@@ -2,13 +2,13 @@ import { TiposFormacion } from "./persona/formacion/tiposformacion";
 import { TiposHabilidad } from "./persona/habilidades/tiposhabilidad";
 
 export interface Persona {
-    idPersona: number;
-    Nombre: string;
-    Apellido: string;
-    Fecha_Nacimiento: Date;
-    Banner: string; // Enlace a la imagen del banner.
-    Avatar: string; // Enlace a la imagen del avatar.
-    Acerca_de: string;
+    id_persona: number;
+    nombre: string;
+    apellido: string;
+    fecha_Nacimiento: Date;
+    banner: string; // Enlace a la imagen del banner.
+    avatar: string; // Enlace a la imagen del avatar.
+    acerca_de: string;
 }
 
 export interface Formacion {

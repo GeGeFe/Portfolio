@@ -26,6 +26,7 @@ import { EditproyectoComponent } from './persona/proyectos/editproyecto/editproy
 import { ImagenesComponent } from './persona/proyectos/imagenes/imagenes.component';
 import { EditimagenComponent } from './persona/proyectos/imagenes/editimagen/editimagen.component';
 import { EdithabilidadComponent } from './persona/habilidades/edithabilidad/edithabilidad.component';
+import { EditpersonaComponent } from './persona/editpersona/editpersona.component';
 
 
 
@@ -46,7 +47,8 @@ import { EdithabilidadComponent } from './persona/habilidades/edithabilidad/edit
     EditproyectoComponent,
     ImagenesComponent,
     EditimagenComponent,
-    EdithabilidadComponent
+    EdithabilidadComponent,
+    EditpersonaComponent
   ],
   imports: [
     BrowserModule,
