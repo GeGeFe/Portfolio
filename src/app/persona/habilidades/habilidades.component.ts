@@ -13,6 +13,7 @@ import { EdithabilidadComponent } from "./edithabilidad/edithabilidad.component"
 })
 export class HabilidadesComponent implements OnInit {
   @Input() habilidadesActual!: Habilidad[];
+  @Input() id_persona!: number;
   habilidadesMostrar!: Habilidad[];
   public amodificar!: Habilidad;
 
@@ -61,7 +62,7 @@ export class HabilidadesComponent implements OnInit {
         habilidad.id_habilidad = 0;
       }
       if (habilidad.id_habilidad != undefined) {
-        this.bdService.setHabilidad(habilidad).subscribe();
+        this.bdService.setHabilidad(habilidad, this.id_persona).subscribe();
       };
       this.reloadComponent();
     });

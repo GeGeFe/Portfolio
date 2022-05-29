@@ -24,7 +24,7 @@ export class BaseDeDatosService {
 
   delFormacion(formacion: Formacion) { return this.http.delete(`${this.url}formacion/borrar/` + formacion.id_educacion); }
 
-  delExperiencia(experiencia: Experiencia) { return this.http.delete(`${this.url}proyecto/borrar/` + experiencia.id_experiencia); }
+  delExperiencia(experiencia: Experiencia) { return this.http.delete(`${this.url}experiencia/borrar/` + experiencia.id_experiencia); }
 
   delProyecto(proyecto: Proyecto) { return this.http.delete(`${this.url}proyecto/borrar/` + proyecto.id_proyecto); }
 
@@ -32,9 +32,9 @@ export class BaseDeDatosService {
 
   delHabilidad(habilidad: Habilidad) { return this.http.delete(`${this.url}habilidad/borrar/` + habilidad.id_habilidad); }
 
-  setFormacion(formacion: Formacion): Observable<any> {
+  setFormacion(formacion: Formacion, id_persona: number): Observable<any> {
     let options = { 'headers': this.headers };
-    return this.http.post(`${this.url}personas/1/agregarFormacion`, { // Cambiar luego el 1 por personaActual
+    return this.http.post(`${this.url}personas/${id_persona}/agregarFormacion`, { // Cambiar luego el 1 por personaActual
       id_educacion: formacion.id_educacion,
       tipo: formacion.tipo,
       titulo: formacion.titulo,
@@ -60,9 +60,9 @@ export class BaseDeDatosService {
       );
   }
 
-  setExperiencia(experiencia: Experiencia): Observable<any> {
+  setExperiencia(experiencia: Experiencia, id_persona: number): Observable<any> {
     let options = { 'headers': this.headers };
-    return this.http.post(`${this.url}personas/1/agregarExperiencia`, { // Cambiar luego el 1 por personaActual
+    return this.http.post(`${this.url}personas/${id_persona}/agregarExperiencia`, { // Cambiar luego el 1 por personaActual
       id_experiencia: experiencia.id_experiencia,
       puesto: experiencia.puesto,
       descripcion_Tareas: experiencia.descripcion_Tareas,
@@ -76,9 +76,9 @@ export class BaseDeDatosService {
       );
   }
 
-  setProyecto(proyecto: Proyecto): Observable<any> {
+  setProyecto(proyecto: Proyecto, id_persona: number): Observable<any> {
     let options = { 'headers': this.headers };
-    return this.http.post(`${this.url}personas/1/agregarProyecto`, { // Cambiar luego el 1 por personaActual
+    return this.http.post(`${this.url}personas/${id_persona}/agregarProyecto`, { // Cambiar luego el 1 por personaActual
       id_proyecto: proyecto.id_proyecto,
       nombre: proyecto.nombre,
       descripcion: proyecto.descripcion,
@@ -90,9 +90,9 @@ export class BaseDeDatosService {
       );
   }
 
-  setHabilidad(habilidad: Habilidad): Observable<any> {
+  setHabilidad(habilidad: Habilidad, id_persona: number): Observable<any> {
     let options = { 'headers': this.headers };
-    return this.http.post(`${this.url}personas/1/agregarHabilidad`, { // Cambiar luego el 1 por personaActual
+    return this.http.post(`${this.url}personas/${id_persona}/agregarHabilidad`, { // Cambiar luego el 1 por personaActual
       id_habilidad: habilidad.id_habilidad,
       nombre: habilidad.nombre,
       porcentaje: habilidad.porcentaje,

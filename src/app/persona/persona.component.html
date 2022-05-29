@@ -21,11 +21,11 @@
 
         <mat-tab-group mat-align-tabs="start">
             <mat-tab *ngFor="let disciplina of disciplinas" label="{{disciplina.nombre}}">
-                <app-experiencia [experienciaActual]="experienciaActual" [disciplinaActual]="disciplina"></app-experiencia>
-                <app-proyectos [proyectosActual]="proyectosActual" [disciplinaActual]="disciplina"></app-proyectos>
-                <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplina"></app-formacion>
+                <app-experiencia [experienciaActual]="experienciaActual" [disciplinaActual]="disciplina" [id_persona]="id_persona"></app-experiencia>
+                <app-proyectos [proyectosActual]="proyectosActual" [disciplinaActual]="disciplina" [id_persona]="id_persona"></app-proyectos>
+                <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplina" [id_persona]="id_persona"></app-formacion>
             </mat-tab>
         </mat-tab-group>
     </mat-card>
-    <app-habilidades [habilidadesActual]="habilidadesActual"></app-habilidades>
+    <app-habilidades [habilidadesActual]="habilidadesActual" [id_persona]="id_persona"></app-habilidades>
 </div>

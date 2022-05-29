@@ -14,6 +14,8 @@ import { EditformacionComponent } from './editformacion/editformacion.component'
 export class FormacionComponent implements OnInit {
   @Input() disciplinaActual!: Disciplina;
   @Input() formacionActual!: Formacion[];
+  @Input() id_persona!: number;
+
   formacionMostrar!: Formacion[];
   public amodificar!: Formacion;
 
@@ -67,7 +69,7 @@ export class FormacionComponent implements OnInit {
         formacion.id_educacion = 0;
       }
       if (formacion.id_educacion != undefined) {
-        this.bdService.setFormacion(formacion).subscribe();
+        this.bdService.setFormacion(formacion,this.id_persona).subscribe();
       };
       this.reloadComponent();
     });

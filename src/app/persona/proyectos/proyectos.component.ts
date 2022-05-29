@@ -14,6 +14,7 @@ import { EditproyectoComponent } from './editproyecto/editproyecto.component';
 export class ProyectosComponent implements OnInit {
   @Input() disciplinaActual!: Disciplina;
   @Input() proyectosActual!: Proyecto[];
+  @Input() id_persona!: number;
   proyectosMostrar!: Proyecto[];
   public amodificar!: Proyecto;
 
@@ -65,7 +66,7 @@ export class ProyectosComponent implements OnInit {
         proyecto.id_proyecto = 0;
       }
       if (proyecto.id_proyecto != undefined) {
-        this.bdService.setProyecto(proyecto).subscribe();
+        this.bdService.setProyecto(proyecto, this.id_persona).subscribe();
       };
       this.reloadComponent(); 
     });

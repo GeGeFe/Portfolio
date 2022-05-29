@@ -14,6 +14,7 @@ import { EditexperienciaComponent } from './editexperiencia/editexperiencia.comp
 export class ExperienciaComponent implements OnInit {
   @Input() disciplinaActual!: Disciplina;
   @Input() experienciaActual!: Experiencia[];
+  @Input() id_persona!: number;
   experienciaMostrar!: Experiencia[];
   public amodificar!: Experiencia;
 
@@ -68,7 +69,7 @@ export class ExperienciaComponent implements OnInit {
         experiencia.id_experiencia = 0;
       }
       if (experiencia.id_experiencia != undefined) {
-        this.bdService.setExperiencia(experiencia).subscribe();
+        this.bdService.setExperiencia(experiencia, this.id_persona).subscribe();
       };
       this.reloadComponent();
     });
