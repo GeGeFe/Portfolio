@@ -9,7 +9,8 @@ import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class BaseDeDatosService {
-  url = "http://192.168.0.7:8080/";
+  //  url = "http://192.168.0.7:8080/";
+  url = "https://frozen-depths-03746.herokuapp.com/"
   headers = new HttpHeaders({
     'Access-Control-Allow-Headers': 'Content-Type',
     'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ import { map } from 'rxjs';
 })
 export class AutenticacionService {
 //  url = "http://192.168.0.7:8080/sesionInicioIrrestricto";
-  url = "http://192.168.0.7:8080/sesionInicio";
+  url = "https://frozen-depths-03746.herokuapp.com/sesionInicio";
   currentUserSubject: BehaviorSubject<any>;
   public tokenactual!: String;
 
@@ -31,7 +31,7 @@ export class AutenticacionService {
   }
 
   public logueado(): boolean {
-    return sessionStorage.getItem("token") != "";
+    return (sessionStorage.getItem("token") != null)&&(sessionStorage.getItem("token") != "");
   }
 
   public logOut(): void {
