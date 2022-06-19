@@ -88,5 +88,9 @@ export class PersonaComponent implements OnInit {
       this.reloadComponent();
     });
   }
+  recibirProyectos(proyectos: Proyecto[]){
+    this.proyectosActual=proyectos;
+    this.reloadComponent();
+  }
 }
 
