@@ -24,13 +24,7 @@ export class ProyectosComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  reloadComponent(): void {
-//    let currentUrl = this.ruta.url;
-//    this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;
-//    this.ruta.onSameUrlNavigation = 'reload';
-//    this.ruta.navigate([currentUrl]);
-    this.proyectoModificado.emit(this.proyectosActual);
-  }
+  reloadComponent(): void { this.proyectoModificado.emit(this.proyectosActual); }
 
   ngOnChanges(): void { this.proyectosMostrar = this.proyectosActual.filter(p => { return (p.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }); }
 
@@ -41,10 +35,10 @@ export class ProyectosComponent implements OnInit {
 
   btnEliminar(evento: Event, proyecto: Proyecto): void {
     if (confirm("¿Realmente quiere borrar este proyecto?")) {
+      this.proyectosActual.slice(this.proyectosActual.findIndex(x => x == proyecto), 1);
       this.bdService.delProyecto(proyecto).subscribe(p => {
         this.reloadComponent();
       });
-      this.proyectosActual.slice(this.proyectosActual.findIndex(x => x == proyecto), 1);
     }
   }
 
@@ -73,7 +67,7 @@ export class ProyectosComponent implements OnInit {
         this.proyectosActual[this.proyectosActual.findIndex(x => x == this.amodificar)] = proyecto;
       }
       if (proyecto.id_proyecto != undefined) {
-        this.bdService.setProyecto(proyecto, this.id_persona).subscribe(p=>{this.reloadComponent();});
+        this.bdService.setProyecto(proyecto, this.id_persona).subscribe(p => { this.reloadComponent(); });
       };
     });
   }
