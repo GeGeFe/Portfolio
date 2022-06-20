@@ -27,8 +27,7 @@ import { ImagenesComponent } from './persona/proyectos/imagenes/imagenes.compone
 import { EditimagenComponent } from './persona/proyectos/imagenes/editimagen/editimagen.component';
 import { EdithabilidadComponent } from './persona/habilidades/edithabilidad/edithabilidad.component';
 import { EditpersonaComponent } from './persona/editpersona/editpersona.component';
-
-
+import { ImagengrandeComponent } from './persona/proyectos/imagenes/imagengrande/imagengrande.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +47,8 @@ import { EditpersonaComponent } from './persona/editpersona/editpersona.componen
     ImagenesComponent,
     EditimagenComponent,
     EdithabilidadComponent,
-    EditpersonaComponent
+    EditpersonaComponent,
+    ImagengrandeComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { Imagen, Proyecto } from 'src/app/interfaces';
 import { AutenticacionService } from 'src/app/servicios/autenticacion.service';
 import { BaseDeDatosService } from 'src/app/servicios/base-de-datos.service';
 import { EditimagenComponent } from './editimagen/editimagen.component';
+import { ImagengrandeComponent } from './imagengrande/imagengrande.component';
 
 @Component({
   selector: 'app-imagenes',
@@ -92,5 +93,15 @@ export class ImagenesComponent implements OnInit {
         });
       };
     });
+  }
+
+  imagenGrande(imagen:Imagen){
+    const dialogoConfig = new MatDialogConfig();
+    dialogoConfig.disableClose = true;
+    dialogoConfig.autoFocus = true;
+    dialogoConfig.data = imagen;
+    const dialogo = this.dialog.open(ImagengrandeComponent, dialogoConfig);
+
+    dialogo.afterClosed().subscribe();
   }
 }
