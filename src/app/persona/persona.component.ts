@@ -79,13 +79,13 @@ export class PersonaComponent implements OnInit {
       avatar: this.personaActual.avatar,
       banner: this.personaActual.banner
     };
-    console.log(this.personaActual.id_persona);
-    console.log(JSON.stringify(dialogoConfig.data));
     const dialogo = this.dialog.open(EditpersonaComponent, dialogoConfig);
 
     dialogo.afterClosed().subscribe(persona => {
-      this.bdService.setPersona(persona).subscribe();
-      this.reloadComponent();
+      this.personaActual = persona;
+      this.bdService.setPersona(persona).subscribe(p => {
+        this.reloadComponent();
+      });
     });
   }
 

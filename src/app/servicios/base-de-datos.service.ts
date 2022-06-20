@@ -112,7 +112,7 @@ export class BaseDeDatosService {
       acerca_de: persona.acerca_de,
       avatar: persona.avatar,
       banner: persona.banner,
-      fecha_nacimiento: persona.fecha_Nacimiento,
+      fecha_Nacimiento: persona.fecha_Nacimiento,
     }
       , options).pipe(map(datos => { return datos; })
       );
