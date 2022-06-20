@@ -88,19 +88,24 @@ export class PersonaComponent implements OnInit {
       this.reloadComponent();
     });
   }
-  
-  recibirProyectos(proyectos: Proyecto[]){
-    this.proyectosActual=proyectos;
+
+  recibirProyectos(proyectos: Proyecto[]) {
+    this.proyectosActual = proyectos;
     this.reloadComponent();
   }
-  
-  recibirExperiencia(experiencias: Experiencia[]){
-    this.experienciaActual=experiencias;
+
+  recibirExperiencia(experiencias: Experiencia[]) {
+    this.experienciaActual = experiencias;
     this.reloadComponent();
   }
-  
-  recibirHabilidades(habilidades: Habilidad[]){
-    this.habilidadesActual=habilidades;
+
+  recibirFormacion(formaciones: Formacion[]) {
+    this.formacionActual = formaciones;
+    this.reloadComponent();
+  }
+
+  recibirHabilidades(habilidades: Habilidad[]) {
+    this.habilidadesActual = habilidades;
     this.reloadComponent();
   }
 }

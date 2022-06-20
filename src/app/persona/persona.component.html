@@ -26,7 +26,7 @@
                 <app-proyectos [proyectosActual]="proyectosActual" [disciplinaActual]="disciplina"
                     [id_persona]="id_persona" (proyectoModificado)="recibirProyectos($event)"></app-proyectos>
                 <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplina"
-                    [id_persona]="id_persona"></app-formacion>
+                    [id_persona]="id_persona" (formacionModificada)="recibirFormacion($event)"></app-formacion>
             </mat-tab>
         </mat-tab-group>
     </mat-card>

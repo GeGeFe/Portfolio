@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AutenticacionService } from '../../servicios/autenticacion.service';
 import { Router } from '@angular/router';
 import { BaseDeDatosService } from 'src/app/servicios/base-de-datos.service';
@@ -15,6 +15,8 @@ export class FormacionComponent implements OnInit {
   @Input() disciplinaActual!: Disciplina;
   @Input() formacionActual!: Formacion[];
   @Input() id_persona!: number;
+  @Output() formacionModificada = new EventEmitter<Formacion[]>();
+
 
   formacionMostrar!: Formacion[];
   public amodificar!: Formacion;
@@ -23,12 +25,7 @@ export class FormacionComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  reloadComponent(): void {
-    let currentUrl = this.ruta.url;
-    this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.ruta.onSameUrlNavigation = 'reload';
-    this.ruta.navigate([currentUrl]);
-  }
+  reloadComponent(): void { this.formacionModificada.emit(this.formacionActual); }
 
   ngOnChanges(): void { this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }); }
 
@@ -39,10 +36,10 @@ export class FormacionComponent implements OnInit {
 
   btnEliminar(evento: Event, formacion: Formacion): void {
     if (confirm("¿Realmente quiere borrar esta formación?")) {
+      this.formacionActual.slice(this.formacionActual.findIndex(x => x == formacion), 1);
       this.bdService.delFormacion(formacion).subscribe(f => {
         this.reloadComponent();
       });
-      this.formacionActual.slice(this.formacionActual.findIndex(x => x == formacion), 1);
     }
   }
 
@@ -65,13 +62,16 @@ export class FormacionComponent implements OnInit {
     dialogo.afterClosed().subscribe(formacion => {
       formacion.disciplina = this.disciplinaActual;
       if (formacion.id_educacion == undefined) {
-        this.formacionActual.push(formacion);
+        // Formación nueva
         formacion.id_educacion = 0;
+        this.formacionActual.push(formacion);
+      } else {
+        // Formación existente
+        this.formacionActual[this.formacionActual.findIndex(x => x == this.amodificar)] = formacion;
       }
       if (formacion.id_educacion != undefined) {
-        this.bdService.setFormacion(formacion,this.id_persona).subscribe();
+        this.bdService.setFormacion(formacion,this.id_persona).subscribe(f => { this.reloadComponent(); });
       };
-      this.reloadComponent();
     });
   }
 }
