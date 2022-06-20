@@ -22,7 +22,7 @@
         <mat-tab-group mat-align-tabs="start">
             <mat-tab *ngFor="let disciplina of disciplinas" label="{{disciplina.nombre}}">
                 <app-experiencia [experienciaActual]="experienciaActual" [disciplinaActual]="disciplina"
-                    [id_persona]="id_persona"></app-experiencia>
+                    [id_persona]="id_persona" (experienciaModificada)="recibirExperiencia($event)"></app-experiencia>
                 <app-proyectos [proyectosActual]="proyectosActual" [disciplinaActual]="disciplina"
                     [id_persona]="id_persona" (proyectoModificado)="recibirProyectos($event)"></app-proyectos>
                 <app-formacion [formacionActual]="formacionActual" [disciplinaActual]="disciplina"

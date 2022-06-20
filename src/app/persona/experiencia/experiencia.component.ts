@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AutenticacionService } from 'src/app/servicios/autenticacion.service';
 import { Router } from '@angular/router';
 import { BaseDeDatosService } from 'src/app/servicios/base-de-datos.service';
@@ -15,6 +15,8 @@ export class ExperienciaComponent implements OnInit {
   @Input() disciplinaActual!: Disciplina;
   @Input() experienciaActual!: Experiencia[];
   @Input() id_persona!: number;
+  @Output() experienciaModificada = new EventEmitter<Experiencia[]>();
+
   experienciaMostrar!: Experiencia[];
   public amodificar!: Experiencia;
 
@@ -22,12 +24,7 @@ export class ExperienciaComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  reloadComponent(): void {
-    let currentUrl = this.ruta.url;
-    this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.ruta.onSameUrlNavigation = 'reload';
-    this.ruta.navigate([currentUrl]);
-  }
+  reloadComponent(): void { this.experienciaModificada.emit(this.experienciaActual); }
 
   ngOnChanges(): void { this.experienciaMostrar = this.experienciaActual.filter(e => { return (e.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }); }
 
@@ -38,10 +35,10 @@ export class ExperienciaComponent implements OnInit {
 
   btnEliminar(evento: Event, experiencia: Experiencia): void {
     if (confirm("¿Realmente quiere borrar esta experiencia?")) {
+      this.experienciaActual.slice(this.experienciaActual.findIndex(x => x == experiencia), 1);
       this.bdService.delExperiencia(experiencia).subscribe(e => {
         this.reloadComponent();
       });
-      this.experienciaActual.slice(this.experienciaActual.findIndex(x => x == experiencia), 1);
     }
   }
 
@@ -65,13 +62,15 @@ export class ExperienciaComponent implements OnInit {
     dialogo.afterClosed().subscribe(experiencia => {
       experiencia.disciplina = this.disciplinaActual;
       if (experiencia.id_experiencia == undefined) {
-        this.experienciaActual.push(experiencia);
+        // Experiencia nueva
         experiencia.id_experiencia = 0;
+        this.experienciaActual.push(experiencia);
+      } else {
+        this.experienciaActual[this.experienciaActual.findIndex(x => x == this.amodificar)] = experiencia;
       }
       if (experiencia.id_experiencia != undefined) {
-        this.bdService.setExperiencia(experiencia, this.id_persona).subscribe();
+        this.bdService.setExperiencia(experiencia, this.id_persona).subscribe(e => { this.reloadComponent(); });
       };
-      this.reloadComponent();
     });
   }
 }

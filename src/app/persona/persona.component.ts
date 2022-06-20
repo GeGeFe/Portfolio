@@ -94,6 +94,11 @@ export class PersonaComponent implements OnInit {
     this.reloadComponent();
   }
   
+  recibirExperiencia(experiencias: Experiencia[]){
+    this.experienciaActual=experiencias;
+    this.reloadComponent();
+  }
+  
   recibirHabilidades(habilidades: Habilidad[]){
     this.habilidadesActual=habilidades;
     this.reloadComponent();
