@@ -44,10 +44,28 @@ export class ImagenesComponent implements OnInit {
   btnEliminar(evento: Event, imagen: Imagen): void {
     if (confirm("¿Realmente quiere borrar esta imagen?")) {
       this.bdService.delImagen(imagen).subscribe(p => {
+        this.imagenes.slice(this.imagenes.findIndex(x => x == imagen), 1);
         this.reloadComponent();
       });
-      this.imagenes.slice(this.imagenes.findIndex(x => x == imagen), 1);
     }
+  }
+
+  btnMover(evento: Event, imagen: Imagen, dir: string): void {
+    if (dir == "izquierda") {
+      this.amodificar = this.imagenes[this.imagenes.findIndex(x => x.posicion == imagen.posicion - 1)];
+      imagen.posicion = imagen.posicion - 1;
+      this.amodificar.posicion = this.amodificar.posicion + 1;
+    }
+    if (dir == "derecha") {
+      this.amodificar = this.imagenes[this.imagenes.findIndex(x => x.posicion == imagen.posicion + 1)];
+      imagen.posicion = imagen.posicion + 1;
+      this.amodificar.posicion = this.amodificar.posicion - 1;
+    }
+    this.bdService.setImagen(imagen, this.proyecto.id_proyecto).subscribe();
+    this.bdService.setImagen(this.amodificar, this.proyecto.id_proyecto).subscribe(i => {
+      this.reloadComponent();
+    });
+
   }
 
   abrirDialogo(): void {
@@ -69,9 +87,10 @@ export class ImagenesComponent implements OnInit {
         imagen.id_imagen = 0;
       }
       if (imagen.id_imagen != undefined) {
-        this.bdService.setImagen(imagen, this.proyecto.id_proyecto).subscribe();
+        this.bdService.setImagen(imagen, this.proyecto.id_proyecto).subscribe(i => {
+          this.reloadComponent();
+        });
       };
-      this.reloadComponent();
     });
   }
 }

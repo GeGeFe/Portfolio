@@ -6,12 +6,17 @@
         </mat-grid-tile-header>
         <img src="{{imagen.enlace}}" title="{{imagen.titulo}}" alt="{{imagen.titulo}}" />
         <mat-grid-tile-footer *ngIf="autServicio.logueado()">
-
+            <button *ngIf="imagen.posicion>1" mat-raised-button (click)="btnMover($event, imagen, 'izquierda')">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
             <button mat-raised-button (click)="btnModificar($event, imagen)">
                 <mat-icon>border_color</mat-icon>
             </button>
             <button mat-raised-button (click)="btnEliminar($event, imagen)">
                 <mat-icon>delete</mat-icon>
+            </button>
+            <button *ngIf="imagen.posicion<imagenes.length" mat-raised-button (click)="btnMover($event, imagen, 'derecha')">
+                <mat-icon>keyboard_arrow_right</mat-icon>
             </button>
         </mat-grid-tile-footer>
 
