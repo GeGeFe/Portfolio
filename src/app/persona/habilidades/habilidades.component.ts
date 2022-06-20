@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { Habilidad } from "src/app/interfaces";
@@ -14,6 +14,9 @@ import { EdithabilidadComponent } from "./edithabilidad/edithabilidad.component"
 export class HabilidadesComponent implements OnInit {
   @Input() habilidadesActual!: Habilidad[];
   @Input() id_persona!: number;
+  @Output() habilidadModificada = new EventEmitter<Habilidad[]>();
+
+
   habilidadesMostrar!: Habilidad[];
   public amodificar!: Habilidad;
 
@@ -21,13 +24,9 @@ export class HabilidadesComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  reloadComponent(): void {
-    let currentUrl = this.ruta.url;
-    this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.ruta.onSameUrlNavigation = 'reload';
-    this.ruta.navigate([currentUrl]);
-  }
+  reloadComponent(): void { this.habilidadModificada.emit(this.habilidadesActual); }
 
+  // Por si en algún momento hay que hacer algún tipo de filtrado como en los otros casos.
   ngOnChanges(): void { this.habilidadesMostrar = this.habilidadesActual; }
 
   btnModificar(evento: Event, habilidad: Habilidad): void {
@@ -37,10 +36,10 @@ export class HabilidadesComponent implements OnInit {
 
   btnEliminar(evento: Event, habilidad: Habilidad): void {
     if (confirm("¿Realmente quiere borrar esta habilidad?")) {
+      this.habilidadesActual.slice(this.habilidadesActual.findIndex(x => x == habilidad), 1);
       this.bdService.delHabilidad(habilidad).subscribe(f => {
         this.reloadComponent();
       });
-      this.habilidadesActual.slice(this.habilidadesActual.findIndex(x => x == habilidad), 1);
     }
   }
 
@@ -58,13 +57,16 @@ export class HabilidadesComponent implements OnInit {
 
     dialogo.afterClosed().subscribe(habilidad => {
       if (habilidad.id_habilidad == undefined) {
-        this.habilidadesActual.push(habilidad);
+        // Habilidad nueva
         habilidad.id_habilidad = 0;
+        this.habilidadesActual.push(habilidad);
+      } else {
+        // Habilidad existente
+        this.habilidadesActual[this.habilidadesActual.findIndex(x => x == this.amodificar)] = habilidad;
       }
       if (habilidad.id_habilidad != undefined) {
-        this.bdService.setHabilidad(habilidad, this.id_persona).subscribe();
+        this.bdService.setHabilidad(habilidad, this.id_persona).subscribe(h => { this.reloadComponent(); });
       };
-      this.reloadComponent();
     });
   }
 }

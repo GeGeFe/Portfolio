@@ -30,5 +30,5 @@
             </mat-tab>
         </mat-tab-group>
     </mat-card>
-    <app-habilidades [habilidadesActual]="habilidadesActual" [id_persona]="id_persona"></app-habilidades>
+    <app-habilidades [habilidadesActual]="habilidadesActual" [id_persona]="id_persona" (habilidadModificada)="recibirHabilidades($event)"></app-habilidades>
 </div>
