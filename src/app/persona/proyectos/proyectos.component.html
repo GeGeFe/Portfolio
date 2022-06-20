@@ -17,7 +17,7 @@
                     <strong>Descripción:</strong> {{proyecto.descripcion}}<br>
                 </div>
                 <div style="text-align: right;">
-                    {{proyecto.fecha_Publicacion|date:"dd/MM/yyyy"}}<br>
+                    <strong>Publicado:</strong> {{proyecto.fecha_Publicacion|date:"dd/MM/yyyy"}}<br>
                 </div>
                 <app-imagenes [imagenes]="proyecto.imagenes" [proyecto]="proyecto"></app-imagenes>
                 <mat-card-actions *ngIf="autServicio.logueado()">

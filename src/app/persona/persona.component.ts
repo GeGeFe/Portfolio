@@ -20,7 +20,8 @@ export class PersonaComponent implements OnInit {
   public disciplinas: Disciplina[] = [];
   public habilidadesActual: Habilidad[] = [];
   public disciplinaActual!: Disciplina;
-  
+  public edad!: number;
+
   constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService, private ruta: Router, public dialog: MatDialog) { }
 
   reloadComponent(): void {
@@ -45,10 +46,16 @@ export class PersonaComponent implements OnInit {
       this.experienciaActual = datos.experiencia;
       this.proyectosActual = datos.proyectos;
       this.habilidadesActual = datos.habilidades;
+      this.edad=this.calcularEdad(new Date(this.personaActual.fecha_Nacimiento));
     });
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))
     });
+  }
+
+  calcularEdad(fecha: Date): number {
+    let hoy= new Date();
+    return hoy.getFullYear()-fecha.getFullYear();
   }
 
   abrirDialogo(evento: Event): void {
