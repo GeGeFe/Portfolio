@@ -20,8 +20,7 @@ export class PersonaComponent implements OnInit {
   public disciplinas: Disciplina[] = [];
   public habilidadesActual: Habilidad[] = [];
   public disciplinaActual!: Disciplina;
-  srcResult: any;
-
+  
   constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService, private ruta: Router, public dialog: MatDialog) { }
 
   reloadComponent(): void {
@@ -50,20 +49,6 @@ export class PersonaComponent implements OnInit {
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))
     });
-  }
-
-  onFileSelected() {
-    const inputNode: any = document.querySelector('#file');
-
-    if (typeof (FileReader) !== 'undefined') {
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        this.srcResult = e.target.result;
-      };
-
-      reader.readAsArrayBuffer(inputNode.files[0]);
-    }
   }
 
   abrirDialogo(evento: Event): void {
