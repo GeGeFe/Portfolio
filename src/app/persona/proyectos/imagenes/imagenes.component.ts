@@ -52,16 +52,17 @@ export class ImagenesComponent implements OnInit {
   }
 
   btnMover(evento: Event, imagen: Imagen, dir: string): void {
+    let posiciontmp: number = imagen.posicion;
     if (dir == "izquierda") {
-      this.amodificar = this.imagenes[this.imagenes.findIndex(x => x.posicion == imagen.posicion - 1)];
-      imagen.posicion = imagen.posicion - 1;
-      this.amodificar.posicion = this.amodificar.posicion + 1;
+      this.amodificar = this.imagenes[this.imagenes.findIndex(x => x.posicion == imagen.posicion) - 1];
     }
     if (dir == "derecha") {
-      this.amodificar = this.imagenes[this.imagenes.findIndex(x => x.posicion == imagen.posicion + 1)];
-      imagen.posicion = imagen.posicion + 1;
-      this.amodificar.posicion = this.amodificar.posicion - 1;
+      this.amodificar = this.imagenes[this.imagenes.findIndex(x => x.posicion == imagen.posicion) + 1];
     }
+    // Se intercambian posiciones para evitar problemas con los huecos.
+    imagen.posicion = this.amodificar.posicion;
+    this.amodificar.posicion = posiciontmp;
+
     this.bdService.setImagen(imagen, this.proyecto.id_proyecto).subscribe();
     this.bdService.setImagen(this.amodificar, this.proyecto.id_proyecto).subscribe(i => {
       this.reloadComponent();
@@ -95,7 +96,7 @@ export class ImagenesComponent implements OnInit {
     });
   }
 
-  imagenGrande(imagen:Imagen){
+  imagenGrande(imagen: Imagen) {
     const dialogoConfig = new MatDialogConfig();
     dialogoConfig.disableClose = true;
     dialogoConfig.autoFocus = true;

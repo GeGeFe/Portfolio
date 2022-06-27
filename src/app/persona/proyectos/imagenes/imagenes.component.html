@@ -1,11 +1,11 @@
 <mat-grid-list cols="3" rowHeight="4:3">
-    <mat-grid-tile *ngFor="let imagen of imagenes">
+    <mat-grid-tile *ngFor="let imagen of imagenes; index as i">
         <mat-grid-tile-header>
             {{imagen.titulo}}
         </mat-grid-tile-header>
         <img src="{{imagen.enlace}}" title="{{imagen.titulo}}" alt="{{imagen.titulo}}" (click)="imagenGrande(imagen)"/>
         <mat-grid-tile-footer *ngIf="autServicio.logueado()">
-            <button *ngIf="imagen.posicion>1" mat-raised-button (click)="btnMover($event, imagen, 'izquierda')">
+            <button *ngIf="i>0" mat-raised-button (click)="btnMover($event, imagen, 'izquierda')">
                 <mat-icon>keyboard_arrow_left</mat-icon>
             </button>
             <button mat-raised-button (click)="btnModificar($event, imagen)">
@@ -14,7 +14,7 @@
             <button mat-raised-button (click)="btnEliminar($event, imagen)">
                 <mat-icon>delete</mat-icon>
             </button>
-            <button *ngIf="imagen.posicion<imagenes.length" mat-raised-button (click)="btnMover($event, imagen, 'derecha')">
+            <button *ngIf="i<imagenes.length-1" mat-raised-button (click)="btnMover($event, imagen, 'derecha')">
                 <mat-icon>keyboard_arrow_right</mat-icon>
             </button>
         </mat-grid-tile-footer>
