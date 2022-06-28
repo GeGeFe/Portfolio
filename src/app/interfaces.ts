@@ -9,6 +9,7 @@ export interface Persona {
     banner: string; // Enlace a la imagen del banner.
     avatar: string; // Enlace a la imagen del avatar.
     acerca_de: string;
+    contacto: string;
 }
 
 export interface Formacion {

@@ -113,6 +113,7 @@ export class BaseDeDatosService {
       avatar: persona.avatar,
       banner: persona.banner,
       fecha_Nacimiento: persona.fecha_Nacimiento,
+      contacto: persona.contacto
     }
       , options).pipe(map(datos => { return datos; })
       );

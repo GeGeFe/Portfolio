@@ -40,7 +40,8 @@ export class PersonaComponent implements OnInit {
         fecha_Nacimiento: datos.fecha_Nacimiento,
         banner: datos.banner,
         avatar: datos.avatar,
-        acerca_de: datos.acerca_de
+        acerca_de: datos.acerca_de,
+        contacto: datos.contacto
       }
       this.formacionActual = datos.formacion;
       this.experienciaActual = datos.experiencia;
@@ -69,7 +70,8 @@ export class PersonaComponent implements OnInit {
       fecha_Nacimiento: this.personaActual.fecha_Nacimiento,
       acerca_de: this.personaActual.acerca_de,
       avatar: this.personaActual.avatar,
-      banner: this.personaActual.banner
+      banner: this.personaActual.banner,
+      contacto: this.personaActual.contacto
     };
     const dialogo = this.dialog.open(EditpersonaComponent, dialogoConfig);
 

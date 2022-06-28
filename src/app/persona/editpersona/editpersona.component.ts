@@ -20,7 +20,8 @@ export class EditpersonaComponent implements OnInit {
       banner: new FormControl(data.banner, [Validators.required]),
       avatar: new FormControl(data.avatar, [Validators.required]),
       fecha_Nacimiento: new FormControl(data.fecha_Nacimiento, [Validators.required]),
-      acerca_de: new FormControl(data.acerca_de, [Validators.required])
+      acerca_de: new FormControl(data.acerca_de, [Validators.required]),
+      contacto: new FormControl(data.contacto, [])
     })
   }
 
