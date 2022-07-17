@@ -21,7 +21,7 @@ export class PersonaComponent implements OnInit {
   public habilidadesActual: Habilidad[] = [];
   public disciplinaActual!: Disciplina;
   public edad!: number;
-  public seleccion: number = 0;
+  public seleccion!: number;
 
   constructor(public bdService: BaseDeDatosService,
     public autServicio: AutenticacionService,
