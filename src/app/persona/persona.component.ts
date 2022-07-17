@@ -30,7 +30,7 @@ export class PersonaComponent implements OnInit {
     public dialog: MatDialog) { }
 
   reloadComponent(): void {
-    let currentUrl = this.ruta.url;
+    let currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
@@ -57,12 +57,10 @@ export class PersonaComponent implements OnInit {
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))
     });
-
     this.seleccion = this.ruta.snapshot.params['seleccion'];
-    console.log(this.seleccion);
   }
 
-  calcularEdad(fecha: Date): number { //Sin contar meses.
+  calcularEdad(fecha: Date): number { // Sin contar meses.
     let hoy = new Date();
     return hoy.getFullYear() - fecha.getFullYear();
   }
