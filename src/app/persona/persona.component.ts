@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BaseDeDatosService } from '../servicios/base-de-datos.service';
 import { AutenticacionService } from '../servicios/autenticacion.service';
 import { Disciplina, Experiencia, Formacion, Habilidad, Persona, Proyecto } from '../interfaces';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditpersonaComponent } from './editpersona/editpersona.component';
 
@@ -62,7 +62,7 @@ export class PersonaComponent implements OnInit {
     console.log(this.seleccion);
   }
 
-  calcularEdad(fecha: Date): number {
+  calcularEdad(fecha: Date): number { //Sin contar meses.
     let hoy = new Date();
     return hoy.getFullYear() - fecha.getFullYear();
   }

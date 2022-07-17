@@ -8,72 +8,47 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar'; // Para las habilidades y no tener que importar otra libreria para las tortas
 import { MatSliderModule } from '@angular/material/slider';  // idem que MatProgresssBarModule
 
-/*
-export const MY_FORMATS = {
-    parse: {
-      dateInput: 'LL', 
-    },
-    display: {
-      dateInput: 'DDDD MMMM YYYY', // this is the format showing on the input element
-      monthYearLabel: 'DDDD MMMM YYYY', // this is showing on the calendar 
-    },
-  };
-
-*/
-
 @NgModule({
-    imports: [
-        MatGridListModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatSelectModule,
-        BrowserAnimationsModule,
-        MatProgressSpinnerModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatDialogModule,
-        MatIconModule,
-        MatTabsModule,
-        MatProgressBarModule,
-        MatSliderModule
-    ],
-    exports: [
-        MatGridListModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatSelectModule,
-        BrowserAnimationsModule,
-        MatProgressSpinnerModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatDialogModule,
-        MatIconModule,
-        MatTabsModule,
-        MatProgressBarModule,
-        MatSliderModule
-    ],
-    /*
-    providers: [
-                {
-                provide: MAT_DATE_FORMATS,
-                useValue: MY_FORMATS
-            },
-        { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
-        , {
-            provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUTC: true }
-        }
-
-    ]*/
+  imports: [
+    MatGridListModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    MatIconModule,
+    MatTabsModule,
+    MatProgressBarModule,
+    MatSliderModule
+  ],
+  exports: [
+    MatGridListModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    MatIconModule,
+    MatTabsModule,
+    MatProgressBarModule,
+    MatSliderModule
+  ]
 })
 export class MaterialModule { };

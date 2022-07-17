@@ -8,10 +8,10 @@ import { Imagen } from 'src/app/interfaces';
   styleUrls: ['./imagengrande.component.css']
 })
 export class ImagengrandeComponent implements OnInit {
-  imagenengrande!:Imagen;
+  imagenengrande!: Imagen;
 
   constructor(public dialogRef: MatDialogRef<ImagengrandeComponent>, @Inject(MAT_DIALOG_DATA) public data: Imagen) {
-    this.imagenengrande= data;
+    this.imagenengrande = data;
     console.log(JSON.stringify(this.imagenengrande));
   }
 

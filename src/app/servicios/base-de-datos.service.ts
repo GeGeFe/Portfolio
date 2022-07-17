@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-//import { environment } from 'src/environments/environment';
 import { Experiencia, Habilidad, Imagen, Persona } from '../interfaces';
 import { Formacion } from '../interfaces';
 import { Proyecto } from '../interfaces';
@@ -9,8 +7,8 @@ import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class BaseDeDatosService {
-  //  url = "http://192.168.0.7:8080/";
-  url = "https://frozen-depths-03746.herokuapp.com/"
+  //  url = "http://192.168.0.7:8080/"; // En local
+  url = "https://frozen-depths-03746.herokuapp.com/" // En heroku
   headers = new HttpHeaders({
     'Access-Control-Allow-Headers': 'Content-Type',
     'Content-Type': 'application/json',

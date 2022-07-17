@@ -7,8 +7,8 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 export class AutenticacionService {
-//  url = "http://192.168.0.7:8080/sesionInicioIrrestricto";
-  url = "https://frozen-depths-03746.herokuapp.com/sesionInicio";
+//  url = "http://192.168.0.7:8080/sesionInicioIrrestricto"; // En local irrestricto para pruebas.
+  url = "https://frozen-depths-03746.herokuapp.com/sesionInicio"; // En geroku
   currentUserSubject: BehaviorSubject<any>;
   public tokenactual!: String;
 

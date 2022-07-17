@@ -9,6 +9,7 @@ const routes: Routes = [
   {path:'sesion', component: SesionComponent},
   {path:'logout', component: SesionComponent},
   {path:':idPersona/:seleccion',component: HomeComponent},
+  {path:':idPersona',component: HomeComponent},
   {path:'',component:HomeComponent},
   {path:'**',component: NotfoundComponent}
 ];
