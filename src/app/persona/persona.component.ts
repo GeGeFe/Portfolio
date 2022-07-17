@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { BaseDeDatosService } from '../servicios/base-de-datos.service';
 import { AutenticacionService } from '../servicios/autenticacion.service';
 import { Disciplina, Experiencia, Formacion, Habilidad, Persona, Proyecto } from '../interfaces';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditpersonaComponent } from './editpersona/editpersona.component';
 
@@ -21,14 +21,19 @@ export class PersonaComponent implements OnInit {
   public habilidadesActual: Habilidad[] = [];
   public disciplinaActual!: Disciplina;
   public edad!: number;
+  public seleccion: number = 0;
 
-  constructor(public bdService: BaseDeDatosService, public autServicio: AutenticacionService, private ruta: Router, public dialog: MatDialog) { }
+  constructor(public bdService: BaseDeDatosService,
+    public autServicio: AutenticacionService,
+    private router: Router,
+    private ruta: ActivatedRoute,
+    public dialog: MatDialog) { }
 
   reloadComponent(): void {
     let currentUrl = this.ruta.url;
-    this.ruta.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.ruta.onSameUrlNavigation = 'reload';
-    this.ruta.navigate([currentUrl]);
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
   }
 
   ngOnInit(): void {
@@ -47,16 +52,19 @@ export class PersonaComponent implements OnInit {
       this.experienciaActual = datos.experiencia;
       this.proyectosActual = datos.proyectos;
       this.habilidadesActual = datos.habilidades;
-      this.edad=this.calcularEdad(new Date(this.personaActual.fecha_Nacimiento));
+      this.edad = this.calcularEdad(new Date(this.personaActual.fecha_Nacimiento));
     });
     this.bdService.getDisciplinas().subscribe((datos) => {
       this.disciplinas = JSON.parse(JSON.stringify(datos))
     });
+
+    this.seleccion = this.ruta.snapshot.params['seleccion'];
+    console.log(this.seleccion);
   }
 
   calcularEdad(fecha: Date): number {
-    let hoy= new Date();
-    return hoy.getFullYear()-fecha.getFullYear();
+    let hoy = new Date();
+    return hoy.getFullYear() - fecha.getFullYear();
   }
 
   abrirDialogo(evento: Event): void {

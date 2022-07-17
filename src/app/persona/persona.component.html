@@ -19,7 +19,7 @@
                 Editar <mat-icon>border_color</mat-icon>
             </button>
         </mat-card-actions>
-        <mat-tab-group mat-align-tabs="start">
+        <mat-tab-group mat-align-tabs="start" selectedIndex="{{seleccion}}">
             <mat-tab *ngFor="let disciplina of disciplinas" label="{{disciplina.nombre}}">
                 <app-experiencia [experienciaActual]="experienciaActual" [disciplinaActual]="disciplina"
                     [id_persona]="id_persona" (experienciaModificada)="recibirExperiencia($event)"></app-experiencia>

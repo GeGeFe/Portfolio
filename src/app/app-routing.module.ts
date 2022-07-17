@@ -8,7 +8,8 @@ const routes: Routes = [
   {path:'login', component: SesionComponent},
   {path:'sesion', component: SesionComponent},
   {path:'logout', component: SesionComponent},
-  {path:'',component: HomeComponent},
+  {path:':idPersona/:seleccion',component: HomeComponent},
+  {path:'',component:HomeComponent},
   {path:'**',component: NotfoundComponent}
 ];
 
