@@ -33,8 +33,7 @@ export class ImagenesComponent implements OnInit {
       if (img1.posicion > img2.posicion) { return 1; }
       if (img1.posicion < img2.posicion) { return -1; }
       return 0;
-    }
-    )
+    })
   }
 
   btnModificar(evento: Event, imagen: Imagen): void {

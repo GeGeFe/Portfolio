@@ -5,6 +5,7 @@ import { Habilidad } from "src/app/interfaces";
 import { AutenticacionService } from "src/app/servicios/autenticacion.service";
 import { BaseDeDatosService } from "src/app/servicios/base-de-datos.service";
 import { EdithabilidadComponent } from "./edithabilidad/edithabilidad.component";
+import { TiposHabilidad } from "./tiposhabilidad";
 
 @Component({
   selector: 'app-habilidades',
@@ -26,8 +27,14 @@ export class HabilidadesComponent implements OnInit {
 
   reloadComponent(): void { this.habilidadModificada.emit(this.habilidadesActual); }
 
-  // Por si en algún momento hay que hacer algún tipo de filtrado como en los otros casos.
-  ngOnChanges(): void { this.habilidadesMostrar = this.habilidadesActual; }
+  ngOnChanges(): void {
+    // Ordeno poniendo primero las habilidades hard.
+    this.habilidadesMostrar = this.habilidadesActual.sort((hab1, hab2) => {
+      if (hab1.tipo.toString()==TiposHabilidad[TiposHabilidad.Soft] && hab2.tipo.toString()==TiposHabilidad[TiposHabilidad.Hard]) { return 1; };
+      if (hab1.tipo.toString()==TiposHabilidad[TiposHabilidad.Hard] && hab2.tipo.toString()==TiposHabilidad[TiposHabilidad.Soft]) { return -1; };
+      return 0;
+    })
+  }
 
   btnModificar(evento: Event, habilidad: Habilidad): void {
     this.amodificar = habilidad;
