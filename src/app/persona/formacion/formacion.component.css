@@ -10,4 +10,6 @@
 
 .mat-card-avatar {
     border-radius: 0%;
+    height: auto;
+    width: 10%;
 }

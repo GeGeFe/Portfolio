@@ -7,3 +7,9 @@
 .experiencia {
     background-color: hsl(15, 89%, 76%);
 }
+
+.mat-card-avatar {
+    border-radius: 0%;
+    height: auto;
+    width: 10%;
+}
