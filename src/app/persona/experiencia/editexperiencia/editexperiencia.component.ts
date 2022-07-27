@@ -19,7 +19,7 @@ export class EditexperienciaComponent implements OnInit {
       logo_Empresa: new FormControl(data.logo_Empresa, [Validators.required]),
       nombre_Empresa: new FormControl(data.nombre_Empresa, [Validators.required]),
       fecha_Inicio: new FormControl(data.fecha_Inicio, [Validators.required]),
-      fecha_Final: new FormControl(data.fecha_Final, [Validators.required])
+      fecha_Final: new FormControl(data.fecha_Final, [])
     })
   }
 
