@@ -14,8 +14,8 @@ export class EditproyectoComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<EditproyectoComponent>, @Inject(MAT_DIALOG_DATA) public data: Proyecto) {
     this.formulario = new FormGroup({
       id_proyecto: new FormControl(data.id_proyecto, []),
-      nombre: new FormControl(data.nombre, [Validators.required]),
-      descripcion: new FormControl(data.descripcion, [Validators.required]),
+      nombre: new FormControl(data.nombre, [Validators.required, Validators.maxLength(255)]),
+      descripcion: new FormControl(data.descripcion, [Validators.required, Validators.maxLength(255)]),
       enlace: new FormControl(data.enlace, [Validators.required]),
       fecha_Publicacion: new FormControl(data.fecha_Publicacion, [Validators.required])
     });

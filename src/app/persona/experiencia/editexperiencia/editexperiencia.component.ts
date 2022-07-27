@@ -15,7 +15,7 @@ export class EditexperienciaComponent implements OnInit {
     this.formulario = new FormGroup({
       id_experiencia: new FormControl(data.id_experiencia, []),
       puesto: new FormControl(data.puesto, [Validators.required]),
-      descripcion_Tareas: new FormControl(data.descripcion_Tareas, [Validators.required]),
+      descripcion_Tareas: new FormControl(data.descripcion_Tareas, [Validators.required, Validators.maxLength(255)]),
       logo_Empresa: new FormControl(data.logo_Empresa, [Validators.required]),
       nombre_Empresa: new FormControl(data.nombre_Empresa, [Validators.required]),
       fecha_Inicio: new FormControl(data.fecha_Inicio, [Validators.required]),
