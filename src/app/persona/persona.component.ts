@@ -62,7 +62,8 @@ export class PersonaComponent implements OnInit {
 
   calcularEdad(fecha: Date): number { // Sin contar meses.
     let hoy = new Date();
-    return hoy.getFullYear() - fecha.getFullYear();
+    if (hoy.getMonth() >= fecha.getMonth()) { return hoy.getFullYear() - fecha.getFullYear(); }
+    else { return hoy.getFullYear() - fecha.getFullYear() - 1; }
   }
 
   abrirDialogo(evento: Event): void {
