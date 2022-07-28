@@ -27,7 +27,16 @@ export class FormacionComponent implements OnInit {
 
   reloadComponent(): void { this.formacionModificada.emit(this.formacionActual); }
 
-  ngOnChanges(): void { this.formacionMostrar = this.formacionActual.filter(f => { return (f.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }); }
+  ngOnChanges(): void {
+    this.formacionMostrar = this.formacionActual.filter(
+      f => { return (f.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }
+    ).sort((a, b) => {
+      console.log(new Date(a.fecha_Inicio).getTime());
+      if (new Date(a.fecha_Inicio).getTime() > new Date(b.fecha_Inicio).getTime()) { return -1; };
+      if (new Date(a.fecha_Inicio).getTime() < new Date(b.fecha_Inicio).getTime()) { return 1; };
+      return 0;
+    });
+  }
 
   btnModificar(evento: Event, formacion: Formacion): void {
     this.amodificar = formacion;
@@ -70,7 +79,7 @@ export class FormacionComponent implements OnInit {
         this.formacionActual[this.formacionActual.findIndex(x => x == this.amodificar)] = formacion;
       }
       if (formacion.id_educacion != undefined) {
-        this.bdService.setFormacion(formacion,this.id_persona).subscribe(f => { this.reloadComponent(); });
+        this.bdService.setFormacion(formacion, this.id_persona).subscribe(f => { this.reloadComponent(); });
       };
     });
   }

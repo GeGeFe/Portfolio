@@ -26,7 +26,16 @@ export class ProyectosComponent implements OnInit {
 
   reloadComponent(): void { this.proyectoModificado.emit(this.proyectosActual); }
 
-  ngOnChanges(): void { this.proyectosMostrar = this.proyectosActual.filter(p => { return (p.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }); }
+  ngOnChanges(): void {
+    this.proyectosMostrar = this.proyectosActual.filter(
+      p => { return (p.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }
+      ).sort((a, b) => {
+        console.log(new Date(a.fecha_Publicacion).getTime());
+        if (new Date(a.fecha_Publicacion).getTime() > new Date(b.fecha_Publicacion).getTime()) { return -1; };
+        if (new Date(a.fecha_Publicacion).getTime() < new Date(b.fecha_Publicacion).getTime()) { return 1; };
+        return 0;
+      });
+  }
 
   btnModificar(evento: Event, proyecto: Proyecto): void {
     this.amodificar = proyecto;

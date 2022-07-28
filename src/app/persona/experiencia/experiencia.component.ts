@@ -26,7 +26,16 @@ export class ExperienciaComponent implements OnInit {
 
   reloadComponent(): void { this.experienciaModificada.emit(this.experienciaActual); }
 
-  ngOnChanges(): void { this.experienciaMostrar = this.experienciaActual.filter(e => { return (e.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }); }
+  ngOnChanges(): void {
+    this.experienciaMostrar = this.experienciaActual.filter(
+      e => { return (e.disciplina.id_disciplina == this.disciplinaActual.id_disciplina); }
+    ).sort((a, b) => {
+      console.log(new Date(a.fecha_Inicio).getTime());
+      if (new Date(a.fecha_Inicio).getTime() > new Date(b.fecha_Inicio).getTime()) { return -1; };
+      if (new Date(a.fecha_Inicio).getTime() < new Date(b.fecha_Inicio).getTime()) { return 1; };
+      return 0;
+    });
+  }
 
   btnModificar(evento: Event, experiencia: Experiencia): void {
     this.amodificar = experiencia;
